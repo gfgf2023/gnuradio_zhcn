@@ -21,15 +21,15 @@ from compile_po import parse_po, compile_po_to_mo
 def locale_setup():
     po_path = os.path.join(REPO_ROOT, 'grc', 'gui_qt', 'resources', 'language', 'zh_CN', 'LC_MESSAGES', 'grc.po')
     mo_path = os.path.join(REPO_ROOT, 'grc', 'gui_qt', 'resources', 'language', 'zh_CN', 'LC_MESSAGES', 'grc.mo')
-    
+
     # 确保编译最新 mo 文件
     assert os.path.exists(po_path), f"PO 文件不存在: {po_path}"
     compile_po_to_mo(po_path, mo_path)
     assert os.path.exists(mo_path), f"MO 文件生成失败: {mo_path}"
-    
+
     locale_dir = os.path.join(REPO_ROOT, 'grc', 'gui_qt', 'resources', 'language')
     tr = gettext.translation('grc', locale_dir, languages=['zh_CN'], fallback=False)
-    
+
     translations_dict = parse_po(po_path)
     return {
         'po_path': po_path,
@@ -126,19 +126,19 @@ def test_parameters_and_options_translated(locale_setup):
 def test_format_placeholders_consistency(locale_setup):
     """验证翻译文本中的格式化占位符与源文本一致，杜绝运行时报错"""
     translations = locale_setup['dict']
-    
+
     # 正则提取 {xxx} 命名占位符和 {} 匿名占位符
     brace_re = re.compile(r'\{[a-zA-Z0-9_]*\}')
     # 正则提取 %s, %d 等格式化符
     percent_re = re.compile(r'%[0-9.-]*[sdifxX]')
-    
+
     for msgid, msgstr in translations.items():
         if not msgstr:
             continue
         id_braces = sorted(brace_re.findall(msgid))
         str_braces = sorted(brace_re.findall(msgstr))
         assert id_braces == str_braces, f"占位符不匹配: msgid '{msgid}' ({id_braces}) vs msgstr '{msgstr}' ({str_braces})"
-        
+
         id_percents = sorted(percent_re.findall(msgid))
         str_percents = sorted(percent_re.findall(msgstr))
         assert id_percents == str_percents, f"%格式化符不匹配: msgid '{msgid}' vs msgstr '{msgstr}'"
@@ -148,7 +148,7 @@ def test_code_generation_module_resolution():
     """测试汉化环境下核心代码生成器模块的解析，确保不崩溃"""
     from grc.core.generator.Generator import Generator
     import grc.workflows.python_qt_gui
-    
+
     class MockPlatform:
         pass
 
@@ -163,7 +163,7 @@ def test_code_generation_module_resolution():
             if opt == 'id':
                 return 'test_flowgraph'
             return ''
-    
+
     # 测试通过源码前缀回退正确导入生成器类
     gen = Generator(MockFlowGraph(), output_dir='.')
     assert gen.generator_class_name == 'PythonQtGuiGenerator'

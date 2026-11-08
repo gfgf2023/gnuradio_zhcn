@@ -34,7 +34,8 @@ def compile_mo():
 
     print(f"[*] 正在编译翻译文件: {po_file} -> {mo_file}")
     import subprocess
-    ret = subprocess.run([sys.executable, str(compile_script), str(po_file), str(mo_file)], capture_output=True, text=True)
+    ret = subprocess.run([sys.executable, str(compile_script), str(
+        po_file), str(mo_file)], capture_output=True, text=True)
     if ret.returncode != 0:
         print(f"[!] 编译 PO 文件失败: {ret.stderr}", file=sys.stderr)
         sys.exit(1)
@@ -147,7 +148,7 @@ def package_release(target_os: str, runtime_path: Path, output_dir: Path, versio
     print("\n=======================================================")
     print(f"  打包完成！")
     print(f"  安装包文件: {archive_path}")
-    print(f"  文件大小: {archive_path.stat().st_size / (1024*1024):.2f} MB")
+    print(f"  文件大小: {archive_path.stat().st_size / (1024 * 1024):.2f} MB")
     print(f"  SHA256: {sha256_val}")
     print("=======================================================\n")
     return archive_path

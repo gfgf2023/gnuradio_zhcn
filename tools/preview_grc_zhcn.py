@@ -53,6 +53,7 @@ if 'gnuradio' not in sys.modules:
     class MockPrefs:
         def get_string(self, *a, **k):
             return ''
+
         def get_bool(self, *a, **k):
             return False
 
@@ -80,7 +81,6 @@ if 'gnuradio' not in sys.modules:
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtCore import Qt, QSettings, QTimer
 from PyQt6.QtGui import QIcon
-
 from grc.gui_qt import properties
 from grc.gui_qt.Platform import Platform
 from grc.gui_qt.components.window import MainWindow
@@ -89,7 +89,7 @@ from grc.gui_qt.components.dialogs import PropsDialog
 
 def run_preview(lang='zh_CN', headless=False):
     print(f"[*] 启动 GRC 中文汉化版预览器 (语言: {lang})...")
-    
+
     # 2. 初始化 gettext 国际化
     locale_dir = os.path.join(REPO_ROOT, 'grc', 'gui_qt', 'resources', 'language')
     translation = gettext.translation('grc', locale_dir, languages=[lang], fallback=True)
@@ -104,9 +104,10 @@ def run_preview(lang='zh_CN', headless=False):
         prefs=mod_gr.prefs(),
         install_prefix=REPO_ROOT
     )
-    
+
     # 扫描仓库内所有的 gr-*/grc 和 grc/blocks 路径
-    search_dirs = [os.path.abspath(d) for d in glob.glob(os.path.join(REPO_ROOT, 'gr-*', 'grc')) + [os.path.join(REPO_ROOT, 'grc', 'blocks')]]
+    search_dirs = [os.path.abspath(d) for d in glob.glob(os.path.join(
+        REPO_ROOT, 'gr-*', 'grc')) + [os.path.join(REPO_ROOT, 'grc', 'blocks')]]
     model.build_library(path=search_dirs)
     print(f"[+] 成功构建模块库，已加载 {len(model.blocks)} 个 DSP 模块与 {len(model._block_categories)} 个分类映射。")
 
@@ -125,7 +126,7 @@ def run_preview(lang='zh_CN', headless=False):
         b_src = None
         b_thr = None
         b_snk = None
-        
+
         # 添加信号源
         if 'analog_sig_source_x' in model.blocks:
             scene.add_block('analog_sig_source_x', pos=(80, 150))

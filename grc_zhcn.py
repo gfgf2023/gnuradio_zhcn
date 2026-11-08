@@ -152,7 +152,8 @@ def main():
     if os.path.isdir(system_blocks):
         search_dirs.append(system_blocks)
     # 仓库源码目录中的 blocks
-    repo_blocks = [os.path.abspath(d) for d in glob.glob(os.path.join(REPO_ROOT, 'gr-*', 'grc')) + [os.path.join(REPO_ROOT, 'grc', 'blocks')]]
+    repo_blocks = [os.path.abspath(d) for d in glob.glob(os.path.join(
+        REPO_ROOT, 'gr-*', 'grc')) + [os.path.join(REPO_ROOT, 'grc', 'blocks')]]
     search_dirs.extend([d for d in repo_blocks if os.path.isdir(d)])
 
     # 去重保留顺序
