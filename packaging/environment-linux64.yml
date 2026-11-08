@@ -1,0 +1,24 @@
+name: gnuradio-zhcn-linux64
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.11
+  - gnuradio
+  - gnuradio-uhd
+  - gnuradio-soapy
+  - uhd
+  - soapysdr
+  - soapysdr-module-rtlsdr
+  - soapysdr-module-hackrf
+  - soapysdr-module-plutosdr
+  - soapysdr-module-airspy
+  - pyqt=6
+  - qdarkstyle
+  - pyyaml
+  - mako
+  - numpy
+  - scipy
+  - matplotlib
+  - conda-pack
+  - pytest

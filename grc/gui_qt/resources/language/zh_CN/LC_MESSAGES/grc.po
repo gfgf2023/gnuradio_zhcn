@@ -1,0 +1,3006 @@
+# GNU Radio Companion (GRC) 简体中文语言包
+# Copyright (C) 2026 Free Software Foundation, Inc.
+# This file is distributed under the same license as the GNU Radio package.
+# Translators: GNU Radio Chinese Localization Team <gfgf2023@github.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GNU Radio Companion (Chinese Simplified)\n"
+"Report-Msgid-Bugs-To: https://github.com/gfgf2023/gnuradio_zhcn\n"
+"POT-Creation-Date: 2026-11-08 00:00+0800\n"
+"PO-Revision-Date: 2026-11-08 00:00+0800\n"
+"Last-Translator: gnuradio_zhcn\n"
+"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# =============================================================================
+# 1. 主窗口与菜单栏 (MainWindow & Menus)
+# =============================================================================
+
+msgid "window-title"
+msgstr "GNU Radio 伴侣 (GRC)"
+
+msgid "&File"
+msgstr "文件(&F)"
+
+msgid "File"
+msgstr "文件"
+
+msgid "&Edit"
+msgstr "编辑(&E)"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "&Align"
+msgstr "对齐(&A)"
+
+msgid "&More"
+msgstr "更多(&M)"
+
+msgid "&Panels"
+msgstr "面板(&P)"
+
+msgid "&Toolbars"
+msgstr "工具栏(&T)"
+
+msgid "&View"
+msgstr "视图(&V)"
+
+msgid "&Build"
+msgstr "构建(&B)"
+
+msgid "Run"
+msgstr "运行"
+
+msgid "&Tools"
+msgstr "工具(&O)"
+
+msgid "&Help"
+msgstr "帮助(&H)"
+
+msgid "&Console"
+msgstr "控制台(&C)"
+
+msgid "Open recent file"
+msgstr "打开最近的文件"
+
+msgid "new"
+msgstr "新建(&N)"
+
+msgid "new-tooltip"
+msgstr "新建流图 (Ctrl+N)"
+
+msgid "open"
+msgstr "打开(&O)..."
+
+msgid "open-tooltip"
+msgstr "打开已有流图 (Ctrl+O)"
+
+msgid "example_browser"
+msgstr "示例流图(&E)..."
+
+msgid "example_browser-tooltip"
+msgstr "浏览官方示例与参考教程"
+
+msgid "close"
+msgstr "关闭(&C)"
+
+msgid "close-tooltip"
+msgstr "关闭当前流图 (Ctrl+W)"
+
+msgid "close_all"
+msgstr "全部关闭(&L)"
+
+msgid "close_all-tooltip"
+msgstr "关闭所有打开的流图"
+
+msgid "save"
+msgstr "保存(&S)"
+
+msgid "save-tooltip"
+msgstr "保存当前流图 (Ctrl+S)"
+
+msgid "save_as"
+msgstr "另存为(&A)..."
+
+msgid "save_as-tooltip"
+msgstr "将当前流图另存为新文件 (Ctrl+Shift+S)"
+
+msgid "save_copy"
+msgstr "保存副本..."
+
+msgid "screen_capture"
+msgstr "流图截屏(&P)..."
+
+msgid "screen_capture-tooltip"
+msgstr "将当前流图画布导出为图片"
+
+msgid "preferences"
+msgstr "偏好设置(&F)..."
+
+msgid "preferences-tooltip"
+msgstr "配置 GRC 全局选项与首选项"
+
+msgid "exit"
+msgstr "退出(&X)"
+
+msgid "exit-tooltip"
+msgstr "退出 GNU Radio Companion"
+
+msgid "undo"
+msgstr "撤销(&U)"
+
+msgid "undo-tooltip"
+msgstr "撤销上一步操作 (Ctrl+Z)"
+
+msgid "redo"
+msgstr "重做(&R)"
+
+msgid "redo-tooltip"
+msgstr "重做上一步撤销的操作 (Ctrl+Y)"
+
+msgid "view_undo_stack"
+msgstr "撤销历史堆栈"
+
+msgid "cut"
+msgstr "剪切(&T)"
+
+msgid "cut-tooltip"
+msgstr "剪切选中的模块 (Ctrl+X)"
+
+msgid "copy"
+msgstr "复制(&C)"
+
+msgid "copy-tooltip"
+msgstr "复制选中的模块 (Ctrl+C)"
+
+msgid "paste"
+msgstr "粘贴(&P)"
+
+msgid "paste-tooltip"
+msgstr "粘贴剪贴板中的模块 (Ctrl+V)"
+
+msgid "delete"
+msgstr "删除(&D)"
+
+msgid "delete-tooltip"
+msgstr "删除选中的模块或连线 (Delete)"
+
+msgid "select_all"
+msgstr "全选(&A)"
+
+msgid "select_all-tooltip"
+msgstr "选中画布中的所有模块 (Ctrl+A)"
+
+msgid "Select None"
+msgstr "取消全选"
+
+msgid "select_none-tooltip"
+msgstr "取消所有选中状态"
+
+msgid "autoconnect"
+msgstr "自动连线(&W)"
+
+msgid "rotate_ccw"
+msgstr "逆时针旋转 90°"
+
+msgid "rotate_ccw-tooltip"
+msgstr "将选中的模块逆时针旋转 90 度"
+
+msgid "rotate_cw"
+msgstr "顺时针旋转 90°"
+
+msgid "rotate_cw-tooltip"
+msgstr "将选中的模块顺时针旋转 90 度"
+
+msgid "vertical_align_top"
+msgstr "顶端对齐"
+
+msgid "vertical_align_middle"
+msgstr "垂直居中对齐"
+
+msgid "vertical_align_bottom"
+msgstr "底端对齐"
+
+msgid "horizontal_align_left"
+msgstr "左对齐"
+
+msgid "horizontal_align_center"
+msgstr "水平居中对齐"
+
+msgid "horizontal_align_right"
+msgstr "右对齐"
+
+msgid "enable"
+msgstr "启用(&E)"
+
+msgid "disable"
+msgstr "禁用(&D)"
+
+msgid "bypass"
+msgstr "旁路(&B)"
+
+msgid "create_hier_block"
+msgstr "创建层次块 (Hier Block)"
+
+msgid "open_hier_block"
+msgstr "打开层次块"
+
+msgid "toggle_source_bus"
+msgstr "切换源总线 (Bus Source)"
+
+msgid "toggle_sink_bus"
+msgstr "切换宿总线 (Bus Sink)"
+
+msgid "flowgraph-properties"
+msgstr "流图属性(&O)..."
+
+msgid "flowgraph-properties-tooltip"
+msgstr "查看与编辑当前流图的整体属性"
+
+msgid "Zoom &in"
+msgstr "放大(&I)"
+
+msgid "Zoom &out"
+msgstr "缩小(&O)"
+
+msgid "O&riginal size"
+msgstr "原始大小(&R)"
+
+msgid "toggle_grid"
+msgstr "显示/隐藏网格(&G)"
+
+msgid "toggle_grid-tooltip"
+msgstr "切换画布对齐网格显示"
+
+msgid "find"
+msgstr "查找模块(&F)..."
+
+msgid "find-tooltip"
+msgstr "通过名称或类名搜索模块 (Ctrl+F / /)"
+
+msgid "errors"
+msgstr "错误与警告(&E)"
+
+msgid "errors-tooltip"
+msgstr "查看流图中的设计错误与未满足约束"
+
+msgid "process-generate"
+msgstr "生成代码(&G)"
+
+msgid "process-generate-tooltip"
+msgstr "将流图编译生成 Python 或 C++ 源代码 (F5)"
+
+msgid "process-execute"
+msgstr "执行运行(&E)"
+
+msgid "process-execute-tooltip"
+msgstr "生成代码并启动流图仿真运行 (F6)"
+
+msgid "process-kill"
+msgstr "终止运行(&K)"
+
+msgid "process-kill-tooltip"
+msgstr "强制停止当前正在运行的流图 (F7)"
+
+msgid "help"
+msgstr "使用帮助(&H)"
+
+msgid "help-tooltip"
+msgstr "打开 GNU Radio 在线帮助手册"
+
+msgid "&Filter Design Tool"
+msgstr "滤波器设计工具(&F)..."
+
+msgid "&OOT Module Browser"
+msgstr "外部 OOT 模块浏览器(&O)..."
+
+msgid "Start profiler"
+msgstr "启动性能分析器"
+
+msgid "Stop profiler"
+msgstr "停止性能分析器"
+
+msgid "&Types"
+msgstr "数据类型图例(&T)"
+
+msgid "&Keys"
+msgstr "键盘快捷键大全(&K)"
+
+msgid "Guided Tutorials"
+msgstr "新手教学教程(&G)"
+
+msgid "Open the GNU Radio guided tutorials"
+msgstr "打开 GNU Radio 官方中文/英文分步教程"
+
+msgid "&Get Involved"
+msgstr "参与社区贡献(&I)"
+
+msgid "about"
+msgstr "关于 GRC(&A)"
+
+msgid "about-tooltip"
+msgstr "显示 GNU Radio Companion 软件版本与版权信息"
+
+msgid "about-qt"
+msgstr "关于 &Qt"
+
+msgid "reload"
+msgstr "刷新模块库(&R)"
+
+msgid "reload-tooltip"
+msgstr "重新加载所有模块 YAML 定义与配置文件"
+
+msgid "ready-message"
+msgstr "就绪"
+
+msgid "Misc"
+msgstr "杂项"
+
+msgid "Flow Graph Files (*.grc);;All files (*.*)"
+msgstr "流程图文件 (*.grc);;所有文件 (*.*)"
+
+# =============================================================================
+# 2. 侧边栏面板与窗口部件 (Docks & Panels)
+# =============================================================================
+
+msgid "Block Library"
+msgstr "模块库"
+
+msgid "Console"
+msgstr "控制台"
+
+msgid "Variable Editor"
+msgstr "变量编辑器"
+
+msgid "Wiki"
+msgstr "维基文档"
+
+msgid "Find a block"
+msgstr "搜索模块 (支持中文/拼音/英文)..."
+
+msgid "Examples..."
+msgstr "查看相关示例..."
+
+msgid "Add to flowgraph"
+msgstr "添加到当前流程图"
+
+msgid "No block selected"
+msgstr "未选中任何模块"
+
+msgid "clear"
+msgstr "清空控制台(&C)"
+
+msgid "clear-tooltip"
+msgstr "清空控制台日志输出"
+
+msgid "show-level"
+msgstr "显示日志级别"
+
+msgid "auto-scroll"
+msgstr "自动滚动到底部"
+
+msgid "variable_editor_add_import"
+msgstr "添加模块导入 (Import)(&I)"
+
+msgid "variable_editor_add_variable"
+msgstr "添加变量 (Variable)(&V)"
+
+msgid "variable_editor_enable"
+msgstr "启用(&E)"
+
+msgid "variable_editor_disable"
+msgstr "禁用(&D)"
+
+msgid "variable_editor_delete"
+msgstr "删除(&L)"
+
+msgid "variable_editor_properties"
+msgstr "属性(&P)..."
+
+msgid "ID"
+msgstr "标识符 (ID)"
+
+msgid "Value"
+msgstr "数值 / 表达式"
+
+# =============================================================================
+# 3. 对话框与首选项 (Dialogs & Preferences)
+# =============================================================================
+
+msgid "Errors and Warnings"
+msgstr "流图错误与警告"
+
+msgid "Source"
+msgstr "错误来源"
+
+msgid "Aspect"
+msgstr "关联对象"
+
+msgid "Message"
+msgstr "详细信息"
+
+msgid "Sink"
+msgstr "接收端 (Sink)"
+
+msgid "Source"
+msgstr "发射端 (Source)"
+
+msgid "Connection to '{}'"
+msgstr "连接至 '{}'"
+
+msgid "Param '{}'"
+msgstr "参数 '{}'"
+
+msgid "Properties: {label}"
+msgstr "属性: {label}"
+
+msgid "General"
+msgstr "常规"
+
+msgid "Advanced"
+msgstr "高级"
+
+msgid "Documentation"
+msgstr "帮助文档"
+
+msgid "GRC Preferences"
+msgstr "GRC 偏好设置"
+
+msgid "GRC Examples"
+msgstr "GRC 示例流图浏览器"
+
+msgid "Runtime"
+msgstr "运行时参数"
+
+msgid "Language"
+msgstr "界面语言 (Language)"
+
+msgid "Interface language (restart required)"
+msgstr "设置软件显示语言（需重启 GRC 生效）"
+
+msgid "Auto"
+msgstr "自动 (跟随系统)"
+
+msgid "Simplified Chinese (zh_CN)"
+msgstr "简体中文 (zh_CN)"
+
+msgid "English (en_US)"
+msgstr "英文原版 (English en_US)"
+
+msgid "Editor"
+msgstr "外部文本编辑器"
+
+msgid "Terminal"
+msgstr "终端模拟器"
+
+msgid "Hide variables"
+msgstr "在画布中隐藏变量块"
+
+msgid "Show parameter expressions in block"
+msgstr "在模块上直接显示参数表达式"
+
+msgid "Show parameter value in block"
+msgstr "在模块上直接显示参数求值结果"
+
+msgid "Hide disabled blocks"
+msgstr "隐藏被禁用的模块"
+
+msgid "Auto-hide port labels"
+msgstr "自动隐藏端口文字标签"
+
+msgid "Snap to grid"
+msgstr "模块拖动自动吸附网格"
+
+msgid "Show block comments"
+msgstr "在模块下方显示用户备注"
+
+msgid "Show all block IDs"
+msgstr "在模块标题处显示类名 ID"
+
+msgid "Generated code preview"
+msgstr "显示生成的代码预览"
+
+msgid "Show flowgraph complexity"
+msgstr "显示流图运算复杂度评估"
+
+# =============================================================================
+# 4. 模块库 61 大分类目录汉化 (Block Tree Categories)
+# =============================================================================
+
+msgid "[Core]"
+msgstr "[核心系统]"
+
+msgid "Core"
+msgstr "核心组件"
+
+msgid "Analog"
+msgstr "模拟信号"
+
+msgid "Digital"
+msgstr "数字通信"
+
+msgid "Variables"
+msgstr "变量与配置"
+
+msgid "Audio"
+msgstr "音频处理"
+
+msgid "Blocks"
+msgstr "常用数据流处理"
+
+msgid "Boolean Operators"
+msgstr "布尔逻辑运算"
+
+msgid "Byte Operators"
+msgstr "字节与比特位操作"
+
+msgid "Channel Models"
+msgstr "信道模型"
+
+msgid "Channelizers"
+msgstr "多信道划分器"
+
+msgid "Coding"
+msgstr "信道编解码"
+
+msgid "Control Port"
+msgstr "控制端口"
+
+msgid "Debug Tools"
+msgstr "调试与监测工具"
+
+msgid "Decoders"
+msgstr "译码器"
+
+msgid "Deprecated"
+msgstr "已废弃模块 (不建议使用)"
+
+msgid "Device Control"
+msgstr "外设硬件控制"
+
+msgid "Digital Television"
+msgstr "数字电视 (DTV)"
+
+msgid "ATSC"
+msgstr "ATSC 美标制式"
+
+msgid "DVB"
+msgstr "DVB 欧标制式"
+
+msgid "DVB-S2"
+msgstr "DVB-S2 卫星电视"
+
+msgid "DVB-T"
+msgstr "DVB-T 地面数字电视"
+
+msgid "DVB-T2"
+msgstr "DVB-T2 第二代地面数字电视"
+
+msgid "ITU-T J.83B"
+msgstr "J.83B 有线电视标准"
+
+msgid "Encoders"
+msgstr "编码器"
+
+msgid "Equalizers"
+msgstr "基带信道均衡器"
+
+msgid "Error Coding"
+msgstr "差错控制与纠错编码 (FEC)"
+
+msgid "FMComms"
+msgstr "FMComms 射频套件"
+
+msgid "File Operators"
+msgstr "文件读写与I/O"
+
+msgid "Filters"
+msgstr "数字滤波器"
+
+msgid "Fourier Analysis"
+msgstr "傅里叶分析 / 频域处理"
+
+msgid "GUI Widgets"
+msgstr "界面交互小部件"
+
+msgid "Generic"
+msgstr "通用工具"
+
+msgid "IQ Correction"
+msgstr "IQ 正交失衡校准"
+
+msgid "Impairment Models"
+msgstr "信道恶化与损伤模型"
+
+msgid "Industrial I/O"
+msgstr "工业级 I/O (IIO / AD9361)"
+
+msgid "Instrumentation"
+msgstr "测量仪表与探针"
+
+msgid "Level Controllers"
+msgstr "电平与自动增益控制 (AGC)"
+
+msgid "Math Operators"
+msgstr "数学算术运算"
+
+msgid "Measurement Tools"
+msgstr "信号度量与分析工具"
+
+msgid "Message Tools"
+msgstr "消息总线与异步 PDU"
+
+msgid "Modulators"
+msgstr "模拟与数字调制器"
+
+msgid "OFDM"
+msgstr "正交频分复用 (OFDM)"
+
+msgid "PDU Tools"
+msgstr "PDU 协议数据单元工具"
+
+msgid "Packet Operators"
+msgstr "数据包与帧结构操作"
+
+msgid "Peak Detectors"
+msgstr "峰值检测器"
+
+msgid "PlutoSDR"
+msgstr "PlutoSDR (ADALM-PLUTO)"
+
+msgid "QT"
+msgstr "QT 图形控件"
+
+msgid "RFNoC"
+msgstr "RFNoC FPGA 片上网络"
+
+msgid "RFNoC Image Builder"
+msgstr "RFNoC 固件构建工具"
+
+msgid "Resamplers"
+msgstr "时域重采样器"
+
+msgid "Soapy"
+msgstr "SoapySDR 通用硬件"
+
+msgid "Stream Operators"
+msgstr "流分流/合流与交织"
+
+msgid "Stream Tag Tools"
+msgstr "流标签 (Stream Tag) 工具"
+
+msgid "Symbol Coding"
+msgstr "星座符号编解码"
+
+msgid "Synchronizers"
+msgstr "时钟与载波同步器"
+
+msgid "Type Converters"
+msgstr "数据类型转换"
+
+msgid "UHD"
+msgstr "USRP 硬件驱动 (UHD)"
+
+msgid "Video"
+msgstr "视频流处理"
+
+msgid "Waveform Generators"
+msgstr "波形信号发生器"
+
+# =============================================================================
+# 5. 核心常用 DSP 模块汉化 (Block Display Labels)
+# =============================================================================
+
+# --- Core Blocks ---
+msgid "Options"
+msgstr "选项 (Options)"
+
+msgid "Variable"
+msgstr "变量"
+
+msgid "Variable Struct"
+msgstr "结构体变量"
+
+msgid "Variable Config"
+msgstr "配置文件变量"
+
+msgid "Variable Function Probe"
+msgstr "函数探针变量"
+
+msgid "Parameter"
+msgstr "命令行参数"
+
+msgid "Import"
+msgstr "模块导入 (Import)"
+
+msgid "Note"
+msgstr "便签注释"
+
+msgid "Snippet"
+msgstr "自定义代码片段 (Snippet)"
+
+msgid "Virtual Source"
+msgstr "虚拟信号源 (Virtual Source)"
+
+msgid "Virtual Sink"
+msgstr "虚拟信号宿 (Virtual Sink)"
+
+msgid "Pad Source"
+msgstr "子图输入端口 (Pad Source)"
+
+msgid "Pad Sink"
+msgstr "子图输出端口 (Pad Sink)"
+
+msgid "Python Block"
+msgstr "嵌入式 Python 模块 (Python Block)"
+
+msgid "Python Module"
+msgstr "嵌入式 Python 代码库 (Python Module)"
+
+# --- Analog Blocks ---
+msgid "Signal Source"
+msgstr "信号源"
+
+msgid "Noise Source"
+msgstr "噪声源"
+
+msgid "Fast Noise Source"
+msgstr "快速高斯噪声源"
+
+msgid "Constant Source"
+msgstr "直流常数源"
+
+msgid "Frequency Modulator"
+msgstr "FM 调频器"
+
+msgid "Phase Modulator"
+msgstr "PM 调相器"
+
+msgid "Quadrature Demod"
+msgstr "正交解调器"
+
+msgid "WBFM Receive"
+msgstr "宽带调频接收 (WBFM Rx)"
+
+msgid "WBFM Transmit"
+msgstr "宽带调频发射 (WBFM Tx)"
+
+msgid "NBFM Receive"
+msgstr "窄带调频接收 (NBFM Rx)"
+
+msgid "NBFM Transmit"
+msgstr "窄带调频发射 (NBFM Tx)"
+
+msgid "AM Demod"
+msgstr "AM 调幅解调器"
+
+msgid "AGC"
+msgstr "自动增益控制 (AGC)"
+
+msgid "AGC2"
+msgstr "自适应增益控制 (AGC2)"
+
+msgid "AGC3"
+msgstr "快速电平控制 (AGC3)"
+
+msgid "Feed Forward AGC"
+msgstr "前馈式自动增益 (Feed Forward AGC)"
+
+msgid "Simple Squelch"
+msgstr "简易静噪门限"
+
+msgid "CTCSS Squelch"
+msgstr "CTCSS 亚音频静噪"
+
+msgid "PLL Ref Out"
+msgstr "锁相环基准输出"
+
+msgid "PLL Freq Det"
+msgstr "锁相环鉴频器"
+
+msgid "PLL Carrier Tracking"
+msgstr "锁相环载波跟踪"
+
+msgid "VCO"
+msgstr "压控振荡器 (VCO)"
+
+# --- General Blocks (Math, Flow, Converters) ---
+msgid "Throttle"
+msgstr "节流阀"
+
+msgid "Throttle2"
+msgstr "节流阀 2"
+
+msgid "Add"
+msgstr "加法器"
+
+msgid "Add Const"
+msgstr "加常数"
+
+msgid "Multiply"
+msgstr "乘法器 (混频)"
+
+msgid "Multiply Const"
+msgstr "乘常数 (比例)"
+
+msgid "Divide"
+msgstr "除法器"
+
+msgid "Subtract"
+msgstr "减法器"
+
+msgid "Complex to Float"
+msgstr "复数转浮点"
+
+msgid "Float to Complex"
+msgstr "实虚浮点转复数 (Float to Complex)"
+
+msgid "Complex to Mag"
+msgstr "复数求幅度模长 (Complex to Mag)"
+
+msgid "Complex to Mag ^ 2"
+msgstr "复数求幅值平方 (Complex to Mag^2)"
+
+msgid "Complex to Arg"
+msgstr "复数求瞬时相位 (Complex to Arg)"
+
+msgid "Complex to Real"
+msgstr "复数提取实部 (Complex to Real)"
+
+msgid "Complex to Imag"
+msgstr "复数提取虚部 (Complex to Imag)"
+
+msgid "Float to Short"
+msgstr "浮点转短整型 (Float to Short)"
+
+msgid "Short to Float"
+msgstr "短整型转浮点 (Short to Float)"
+
+msgid "Char to Float"
+msgstr "字节转浮点 (Char to Float)"
+
+msgid "Float to Char"
+msgstr "浮点转字节 (Float to Char)"
+
+msgid "Vector Source"
+msgstr "向量序列源 (Vector Source)"
+
+msgid "Vector Sink"
+msgstr "向量数据宿 (Vector Sink)"
+
+msgid "Null Source"
+msgstr "空信号源 (Null Source)"
+
+msgid "Null Sink"
+msgstr "空数据宿 / 丢弃 (Null Sink)"
+
+msgid "File Source"
+msgstr "二进制文件源 (File Source)"
+
+msgid "File Sink"
+msgstr "二进制文件宿 (File Sink)"
+
+msgid "Wavfile Source"
+msgstr "WAV 音频文件读取 (Wavfile Source)"
+
+msgid "Wavfile Sink"
+msgstr "WAV 音频文件录制 (Wavfile Sink)"
+
+msgid "Head"
+msgstr "截取头部数据点 (Head)"
+
+msgid "Skip Head"
+msgstr "跳过前 N 点数据 (Skip Head)"
+
+msgid "Delay"
+msgstr "时延样本延迟 (Delay)"
+
+msgid "Repeat"
+msgstr "样本重复插值 (Repeat)"
+
+msgid "Stream to Vector"
+msgstr "流转向量块 (Stream to Vector)"
+
+msgid "Vector to Stream"
+msgstr "向量块转流 (Vector to Stream)"
+
+msgid "Stream to Streams"
+msgstr "数据流解复用拆分 (Stream to Streams)"
+
+msgid "Streams to Stream"
+msgstr "多路流合并复用 (Streams to Stream)"
+
+msgid "Interleave"
+msgstr "数据流通路交织 (Interleave)"
+
+msgid "Deinterleave"
+msgstr "数据流通路解交织 (Deinterleave)"
+
+msgid "Tag Debug"
+msgstr "流标签调试打印 (Tag Debug)"
+
+msgid "Tag Gate"
+msgstr "流标签阻断门 (Tag Gate)"
+
+msgid "Message Strobe"
+msgstr "定时脉冲消息发生器 (Message Strobe)"
+
+msgid "Message Debug"
+msgstr "异步消息调试打印 (Message Debug)"
+
+msgid "Pack K Bits"
+msgstr "K 比特流打包 (Pack K Bits)"
+
+msgid "Unpack K Bits"
+msgstr "K 比特流解包 (Unpack K Bits)"
+
+# --- Filters ---
+msgid "Low Pass Filter"
+msgstr "低通滤波器"
+
+msgid "High Pass Filter"
+msgstr "高通滤波器"
+
+msgid "Band Pass Filter"
+msgstr "带通滤波器"
+
+msgid "Band Reject Filter"
+msgstr "带阻滤波器"
+
+msgid "Root Raised Cosine Filter"
+msgstr "根升余弦滤波器 (RRC)"
+
+msgid "Raised Cosine Filter"
+msgstr "升余弦滤波器"
+
+msgid "Single Pole IIR Filter"
+msgstr "单极点 IIR 滤波器"
+
+msgid "IIR Filter"
+msgstr "通用 IIR 滤波器"
+
+msgid "FIR Filter"
+msgstr "通用 FIR 滤波器"
+
+msgid "Decimating FIR Filter"
+msgstr "抽取型 FIR 滤波器 (Decimating FIR)"
+
+msgid "Interpolating FIR Filter"
+msgstr "插值型 FIR 滤波器 (Interpolating FIR)"
+
+msgid "FFT Filter"
+msgstr "快速卷积 FFT 滤波器 (FFT Filter)"
+
+msgid "Rational Resampler"
+msgstr "有理数倍重采样器 (Rational Resampler)"
+
+msgid "Fractional Resampler"
+msgstr "分数倍重采样器 (Fractional Resampler)"
+
+msgid "Polyphase Arbitrary Resampler"
+msgstr "多相任意倍重采样 (Arb Resampler)"
+
+# --- Digital Communication ---
+msgid "Constellation Modulator"
+msgstr "数字星座图调制器 (Constellation Mod)"
+
+msgid "Constellation Decoder"
+msgstr "数字星座图译码器 (Constellation Decoder)"
+
+msgid "Symbol Sync"
+msgstr "符号时钟定时同步 (Symbol Sync)"
+
+msgid "Costas Loop"
+msgstr "科斯塔斯环载波恢复 (Costas Loop)"
+
+msgid "Polyphase Clock Sync"
+msgstr "多相时钟定时同步 (Polyphase Clock Sync)"
+
+msgid "CMA Equalizer"
+msgstr "盲恒模自适应均衡器 (CMA Equalizer)"
+
+msgid "LMS Equalizer"
+msgstr "最小均方误差自适应均衡器 (LMS Equalizer)"
+
+msgid "Diff Decoder"
+msgstr "差分解码器 (Diff Decoder)"
+
+msgid "Diff Encoder"
+msgstr "差分编码器 (Diff Encoder)"
+
+msgid "Chunks to Symbols"
+msgstr "位块映射星座点 (Chunks to Symbols)"
+
+msgid "Binary Slicer"
+msgstr "二元硬判决门限器 (Binary Slicer)"
+
+msgid "Packet Header Generator"
+msgstr "数据包头生成器 (Header Generator)"
+
+msgid "Packet Header Parser"
+msgstr "数据包头解析器 (Header Parser)"
+
+msgid "CRC32 Async"
+msgstr "异步 CRC32 循环冗余校验 (CRC32 Async)"
+
+# --- QT GUI Widgets & Sinks ---
+msgid "QT GUI Time Sink"
+msgstr "QT 示波器"
+
+msgid "QT GUI Frequency Sink"
+msgstr "QT 频谱仪"
+
+msgid "QT GUI Waterfall Sink"
+msgstr "QT 瀑布图"
+
+msgid "QT GUI Constellation Sink"
+msgstr "QT 星座图"
+
+msgid "QT GUI Eye Display"
+msgstr "QT 眼图仪"
+
+msgid "QT GUI Number Sink"
+msgstr "QT 数字仪表"
+
+msgid "QT GUI Vector Sink"
+msgstr "QT 向量图"
+
+msgid "QT GUI Histogram Sink"
+msgstr "QT 直方图"
+
+msgid "QT GUI Range"
+msgstr "QT 滑动条"
+
+msgid "QT GUI Check Box"
+msgstr "QT 复选框"
+
+msgid "QT GUI Push Button"
+msgstr "QT 按钮"
+
+msgid "QT GUI Chooser"
+msgstr "QT 下拉选择器"
+
+msgid "QT GUI Entry"
+msgstr "QT 文本输入框"
+
+msgid "QT GUI Tab Widget"
+msgstr "QT 分页容器组件 (Tab Widget)"
+
+msgid "QT GUI Label"
+msgstr "QT 静态文本标签 (Label)"
+
+# --- SDR Hardware (UHD, Soapy, Audio) ---
+msgid "UHD: USRP Source"
+msgstr "USRP 硬件接收信源 (USRP Source)"
+
+msgid "UHD: USRP Sink"
+msgstr "USRP 硬件发射信宿 (USRP Sink)"
+
+msgid "Soapy RTL-SDR Source"
+msgstr "RTL-SDR 电视棒接收源 (RTL-SDR Source)"
+
+msgid "Soapy HackRF Source"
+msgstr "HackRF 硬件接收源 (HackRF Source)"
+
+msgid "Soapy HackRF Sink"
+msgstr "HackRF 硬件发射宿 (HackRF Sink)"
+
+msgid "Soapy PlutoSDR Source"
+msgstr "PlutoSDR 硬件接收源 (Pluto Source)"
+
+msgid "Soapy PlutoSDR Sink"
+msgstr "PlutoSDR 硬件发射宿 (Pluto Sink)"
+
+msgid "Audio Source"
+msgstr "声卡音频麦克风输入 (Audio Source)"
+
+msgid "Audio Sink"
+msgstr "声卡音频扬声器输出 (Audio Sink)"
+
+# --- Channel Models ---
+msgid "Channel Model"
+msgstr "通用高斯/衰落信道模型 (Channel Model)"
+
+msgid "Fading Model"
+msgstr "莱斯/瑞利多径衰落模型 (Fading Model)"
+
+msgid "Dynamic Channel Model"
+msgstr "动态时变信道模型 (Dynamic Channel)"
+
+# =============================================================================
+# 6. 核心参数与配置项汉化 (Parameter Names & Options)
+# =============================================================================
+
+msgid "Sample Rate"
+msgstr "采样率"
+
+msgid "samp_rate"
+msgstr "采样率"
+
+msgid "Frequency"
+msgstr "频率"
+
+msgid "Gain"
+msgstr "增益"
+
+msgid "Amplitude"
+msgstr "幅度"
+
+msgid "Offset"
+msgstr "直流偏置"
+
+msgid "Cutoff Freq"
+msgstr "截止频率"
+
+msgid "Transition Width"
+msgstr "过渡带宽度"
+
+msgid "Decimation"
+msgstr "抽取倍率"
+
+msgid "Interpolation"
+msgstr "插值倍率"
+
+msgid "Taps"
+msgstr "滤波器抽头"
+
+msgid "Output Type"
+msgstr "输出类型"
+
+msgid "Input Type"
+msgstr "输入类型"
+
+msgid "Waveform"
+msgstr "波形"
+
+msgid "Constant"
+msgstr "直流"
+
+msgid "Sine"
+msgstr "正弦波"
+
+msgid "Cosine"
+msgstr "余弦波"
+
+msgid "Square"
+msgstr "方波"
+
+msgid "Triangle"
+msgstr "三角波"
+
+msgid "Saw Tooth"
+msgstr "锯齿波"
+
+msgid "Complex"
+msgstr "复数"
+
+msgid "Float"
+msgstr "浮点"
+
+msgid "Int"
+msgstr "整型"
+
+msgid "Short"
+msgstr "短整型"
+
+msgid "Byte"
+msgstr "字节"
+
+msgid "Window"
+msgstr "窗函数"
+
+msgid "Hamming"
+msgstr "汉明窗"
+
+msgid "Hann"
+msgstr "汉宁窗"
+
+msgid "Blackman"
+msgstr "布莱克曼窗"
+
+msgid "Rectangular"
+msgstr "矩形窗"
+
+msgid "Kaiser"
+msgstr "凯泽窗"
+
+msgid "Flat Top"
+msgstr "平顶窗"
+
+msgid "Center Frequency"
+msgstr "中心频率"
+
+msgid "Bandwidth"
+msgstr "分析带宽"
+
+msgid "Update Rate"
+msgstr "界面刷新速率"
+
+msgid "Y min"
+msgstr "Y 轴最小值"
+
+msgid "Y max"
+msgstr "Y 轴最大值"
+
+msgid "Title"
+msgstr "流图标题"
+
+msgid "Author"
+msgstr "作者签名"
+
+msgid "Description"
+msgstr "功能说明描述"
+
+msgid "Generate Options"
+msgstr "运行工作流选项"
+
+msgid "Output Language"
+msgstr "生成代码目标语言"
+
+msgid "QT GUI"
+msgstr "QT 图形界面模式 (QT GUI)"
+
+msgid "No GUI"
+msgstr "无界面控制台模式 (No GUI)"
+
+msgid "Hier Block"
+msgstr "层次子图模式 (Hier Block)"
+
+msgid "Generate Error"
+msgstr "代码生成错误"
+
+msgid "Failed to generate code"
+msgstr "生成代码失败"
+
+msgid "Code generated successfully!"
+msgstr "流图代码生成成功！"
+
+msgid "Starting flowgraph execution"
+msgstr "正在启动流图子进程"
+
+msgid "Generated"
+msgstr "已生成"
+
+# =============================================================================
+# 7. 全量通信与数字信号处理模块深度汉化 (All 570+ DSP Blocks)
+# =============================================================================
+
+msgid "AND"
+msgstr "按位与 (AND)"
+
+msgid "AND Const"
+msgstr "按位与常数"
+
+msgid "ATSC Deinterleaver"
+msgstr "ATSC 解交织器"
+
+msgid "ATSC Depad"
+msgstr "ATSC 填充剥离"
+
+msgid "ATSC Derandomizer"
+msgstr "ATSC 解扰乱器"
+
+msgid "ATSC Equalizer"
+msgstr "ATSC 基带均衡器"
+
+msgid "ATSC Field Sync Checker"
+msgstr "ATSC 场同步校验器"
+
+msgid "ATSC Field Sync Mux"
+msgstr "ATSC 场同步复用器"
+
+msgid "ATSC Interleaver"
+msgstr "ATSC 卷积交织器"
+
+msgid "ATSC Pad"
+msgstr "ATSC 比特填充"
+
+msgid "ATSC RS Encoder"
+msgstr "ATSC 里德-所罗门 (RS) 编码器"
+
+msgid "ATSC RX Filter"
+msgstr "ATSC 接收成形匹配滤波器"
+
+msgid "ATSC Randomizer"
+msgstr "ATSC 扰乱器"
+
+msgid "ATSC Receive Pipeline"
+msgstr "ATSC 完整接收流水线"
+
+msgid "ATSC Receiver FPLL"
+msgstr "ATSC 接收机二阶锁相环 (FPLL)"
+
+msgid "ATSC Receiver SYNC"
+msgstr "ATSC 接收同步检测器"
+
+msgid "ATSC Reed–Solomon Decoder"
+msgstr "ATSC 里德-所罗门 (RS) 译码器"
+
+msgid "ATSC Trellis Encoder"
+msgstr "ATSC 网格编码器"
+
+msgid "ATSC Viterbi Decoder"
+msgstr "ATSC 维特比译码器"
+
+msgid "Abs"
+msgstr "绝对值 (Abs)"
+
+msgid "Adaptive Algorithm"
+msgstr "自适应信道均衡算法对象"
+
+msgid "Add System Time"
+msgstr "添加系统高精度时间戳"
+
+msgid "Additive Scrambler"
+msgstr "加性扰乱器"
+
+msgid "Additive Scrambler (Deprecated)"
+msgstr "加性扰乱器 (已弃用)"
+
+msgid "Alaw Audio Decoder"
+msgstr "G.711 A律音频解码器"
+
+msgid "Amplitude Balance"
+msgstr "幅度平衡校准"
+
+msgid "And"
+msgstr "按位与 (And)"
+
+msgid "And Const"
+msgstr "按位与常数 (And Const)"
+
+msgid "Annotator"
+msgstr "数据流注释器"
+
+msgid "Annotator Raw"
+msgstr "流注释器 (原始)"
+
+msgid "Apply Tags"
+msgstr "数据流附加标签 (Apply Tags)"
+
+msgid "ArgMax"
+msgstr "最大值索引查找 (ArgMax)"
+
+msgid "Argmax"
+msgstr "最大值索引 (Argmax)"
+
+msgid "Async CRC16"
+msgstr "异步 CRC16 校验"
+
+msgid "Async CRC32"
+msgstr "异步 CRC32 校验"
+
+msgid "BBheader"
+msgstr "基带帧头添加 (BBheader)"
+
+msgid "BBscrambler"
+msgstr "基带扰乱器 (BBscrambler)"
+
+msgid "BCH Encoder"
+msgstr "BCH 纠错编码器"
+
+msgid "BER"
+msgstr "误码率 (BER) 测定仪"
+
+msgid "BER Curve Gen."
+msgstr "误码率曲线发生器"
+
+msgid "Band-pass Filter Taps"
+msgstr "带通滤波器抽头计算"
+
+msgid "Band-reject Filter Taps"
+msgstr "带阻滤波器抽头计算"
+
+msgid "Bit Inner Deinterleaver"
+msgstr "比特内解交织器"
+
+msgid "Bit Inner Interleaver"
+msgstr "比特内交织器"
+
+msgid "Bit Interleaver"
+msgstr "比特交织器"
+
+msgid "Block interleaver"
+msgstr "块交织器 (Block Interleaver)"
+
+msgid "Burst Shaper"
+msgstr "突发信号脉冲成形器"
+
+msgid "Burst Tagger"
+msgstr "突发数据包打标器 (Burst Tagger)"
+
+msgid "Burst to Stream"
+msgstr "突发包转连续流 (Burst to Stream)"
+
+msgid "CC Decoder Definition"
+msgstr "卷积码 (CC) 译码对象"
+
+msgid "CC Encoder Definition"
+msgstr "卷积码 (CC) 编码对象"
+
+msgid "CCSDS Encoder Definition"
+msgstr "CCSDS 卷积编码对象"
+
+msgid "CFO Model"
+msgstr "载波频偏模型 (CFO)"
+
+msgid "CHDR DMA Transport Adapter"
+msgstr "CHDR DMA 传输适配器"
+
+msgid "CODEC2 Audio Decoder"
+msgstr "Codec2 低码率音频解码"
+
+msgid "CODEC2 Audio Encoder"
+msgstr "Codec2 低码率音频编码"
+
+msgid "CPFSK"
+msgstr "连续相位频移键控 (CPFSK)"
+
+msgid "CRC Append"
+msgstr "数据包追加 CRC 校验码"
+
+msgid "CRC Check"
+msgstr "数据包 CRC 校验核验"
+
+msgid "CVSD Audio Decoder (Raw Bit-Level)"
+msgstr "CVSD 比特级音频解码"
+
+msgid "CVSD Audio Encoder (Raw Bit-Level)"
+msgstr "CVSD 比特级音频编码"
+
+msgid "CVSD Decoder"
+msgstr "连续可变斜率增量调制解码 (CVSD 浮点)"
+
+msgid "CVSD Encoder"
+msgstr "连续可变斜率增量调制编码 (CVSD 浮点)"
+
+msgid "Cell/Time Interleaver"
+msgstr "单元/时间交织器"
+
+msgid "Channel Model 2"
+msgstr "信道仿真模型 2"
+
+msgid "Char To Float"
+msgstr "字符转浮点 (Char to Float)"
+
+msgid "Char To Short"
+msgstr "字符转短整型 (Char to Short)"
+
+msgid "Check LFSSR"
+msgstr "线性反馈移位寄存器校验 (LFSR Check)"
+
+msgid "Chirp"
+msgstr "线性调频脉冲发生器 (Chirp)"
+
+msgid "Clock Recovery MM"
+msgstr "米勒-穆勒时钟恢复 (MM Clock Recovery)"
+
+msgid "Complex Conjugate"
+msgstr "复数共轭 (Conjugate)"
+
+msgid "Complex To Float"
+msgstr "复数转实虚浮点 (Complex to Float)"
+
+msgid "Complex To IChar"
+msgstr "复数转交织字符"
+
+msgid "Complex To IShort"
+msgstr "复数转交织短整型"
+
+msgid "Complex To Mag Phase"
+msgstr "复数转模长与相位 (Mag/Phase)"
+
+msgid "Complex To Real"
+msgstr "复数取实部 (Real)"
+
+msgid "Complex to IChar"
+msgstr "复数转交织字符"
+
+msgid "Complex to IShort"
+msgstr "复数转交织短整型"
+
+msgid "Complex to Mag^2"
+msgstr "复数求功率模平方 (Mag^2)"
+
+msgid "Conjugate"
+msgstr "复数共轭 (Conjugate)"
+
+msgid "Constellation Encoder"
+msgstr "星座图映射编码器"
+
+msgid "Constellation Object"
+msgstr "数字星座图对象定义"
+
+msgid "Constellation Receiver"
+msgstr "星座图解调判决接收机"
+
+msgid "Constellation Rect. Object"
+msgstr "矩形网格星座图对象"
+
+msgid "Constellation Soft Decoder"
+msgstr "星座图软判决译码器"
+
+msgid "Continuous Phase Modulation"
+msgstr "连续相位调制 (CPM)"
+
+msgid "Convolutional Deinterleaver"
+msgstr "卷积解交织器"
+
+msgid "Convolutional Interleaver"
+msgstr "卷积交织器"
+
+msgid "Copy"
+msgstr "数据流直通复制 (Copy)"
+
+msgid "Correlate Access Code - Tag"
+msgstr "前导同步字自相关打标 (Tag)"
+
+msgid "Correlate Access Code - Tag Stream"
+msgstr "前导同步字自相关定长流 (Tag Stream)"
+
+msgid "Correlation Estimator"
+msgstr "时钟相位相关估计算法"
+
+msgid "CtrlPort Monitor"
+msgstr "CtrlPort 监控器"
+
+msgid "CtrlPort Performance Monitor"
+msgstr "CtrlPort 性能监视器"
+
+msgid "Ctrlport Complex Probe"
+msgstr "CtrlPort 复数信号探针"
+
+msgid "Ctrlport Probe"
+msgstr "CtrlPort 动态调试探针"
+
+msgid "Ctrlport Probe PSD"
+msgstr "CtrlPort 功率谱探针 (PSD)"
+
+msgid "DC Blocker"
+msgstr "直流阻断隔离器 (DC Blocker)"
+
+msgid "DDS Control"
+msgstr "直接数字频率合成控制 (DDS)"
+
+msgid "DVB-S2X Modulator"
+msgstr "DVB-S2X 卫星电视调制器"
+
+msgid "DVB-T Demap"
+msgstr "DVB-T 符号解映射器"
+
+msgid "DVB-T Map"
+msgstr "DVB-T 星座符号映射器"
+
+msgid "DVB-T2 Modulator"
+msgstr "DVB-T2 地面数字电视调制器"
+
+msgid "Decision Feedback Equalizer"
+msgstr "判决反馈均衡器 (DFE)"
+
+msgid "Decode CCSDS 27"
+msgstr "CCSDS 27 卷积译码器"
+
+msgid "Default Header Format Obj."
+msgstr "默认帧头格式对象 (Header Format)"
+
+msgid "Demod Reference Signals"
+msgstr "参考解调参考导频提取"
+
+msgid "Depuncture"
+msgstr "信道解打孔 (Depuncture)"
+
+msgid "Descrambler"
+msgstr "数字解扰器"
+
+msgid "Detect Peak"
+msgstr "数字峰值检测 (DPLL)"
+
+msgid "Differential Decoder"
+msgstr "差分译码器"
+
+msgid "Differential Encoder"
+msgstr "差分编码器"
+
+msgid "Differential Phasor"
+msgstr "差分相量鉴相"
+
+msgid "Dummy Decoder Definition"
+msgstr "空测试译码器对象"
+
+msgid "Dummy Encoder Definition"
+msgstr "空测试编码器对象"
+
+msgid "EVM Measurement"
+msgstr "误差矢量幅度测定 (EVM)"
+
+msgid "Encode CCSDS 27"
+msgstr "CCSDS 27 卷积编码器"
+
+msgid "Endian Swap"
+msgstr "大小端字节序转换 (Endian Swap)"
+
+msgid "Energy Descramble"
+msgstr "能量解扰乱器"
+
+msgid "Energy Dispersal"
+msgstr "能量分散扰乱器"
+
+msgid "Ethernet Transport Adapter"
+msgstr "以太网传输适配器"
+
+msgid "Exponentiate Const Int"
+msgstr "整数幂运算常数"
+
+msgid "FEC Async Decoder"
+msgstr "FEC 异步信道译码器"
+
+msgid "FEC Async Encoder"
+msgstr "FEC 异步信道编码器"
+
+msgid "FEC Decoder"
+msgstr "通用 FEC 译码器"
+
+msgid "FEC Encoder"
+msgstr "通用 FEC 编码器"
+
+msgid "FEC Extended Async Encoder"
+msgstr "FEC 扩展异步编码器"
+
+msgid "FEC Extended Decoder"
+msgstr "FEC 扩展译码器"
+
+msgid "FEC Extended Encoder"
+msgstr "FEC 扩展编码器"
+
+msgid "FEC Extended Tagged Decoder"
+msgstr "FEC 扩展定包译码器"
+
+msgid "FEC Extended Tagged Encoder"
+msgstr "FEC 扩展定包编码器"
+
+msgid "FEC Tagged Decoder"
+msgstr "FEC 定包标签译码器"
+
+msgid "FEC Tagged Encoder"
+msgstr "FEC 定包标签编码器"
+
+msgid "FFT"
+msgstr "快速傅里叶变换 (FFT)"
+
+msgid "FFT Low Pass Filter"
+msgstr "快速傅里叶低通滤波器 (FFT LPF)"
+
+msgid "FFT Root Raised Cosine Filter"
+msgstr "快速傅里叶根升余弦滤波器 (FFT RRC)"
+
+msgid "FLL Band-Edge"
+msgstr "频偏锁相环带边滤波器 (FLL)"
+
+msgid "FM Deemphasis"
+msgstr "FM 去加重滤波器"
+
+msgid "FM Demod"
+msgstr "FM 调频解调"
+
+msgid "FM Detector"
+msgstr "FM 鉴频解调器"
+
+msgid "FM Preemphasis"
+msgstr "FM 预加重滤波器"
+
+msgid "FMComms2/3/4 Sink"
+msgstr "AD9361/FMComms 发射端"
+
+msgid "FMComms2/3/4 Source"
+msgstr "AD9361/FMComms 接收端"
+
+msgid "File Descriptor Sink"
+msgstr "文件描述符写入 (FD Sink)"
+
+msgid "File Descriptor Source"
+msgstr "文件描述符读取 (FD Source)"
+
+msgid "File Meta Sink"
+msgstr "带元数据文件写入 (Meta Sink)"
+
+msgid "File Meta Source"
+msgstr "带元数据文件读取 (Meta Source)"
+
+msgid "Filter Delay"
+msgstr "滤波器群延时对齐"
+
+msgid "Filter Taps Loader"
+msgstr "外部文件滤波器抽头载入"
+
+msgid "Float To Char"
+msgstr "浮点转字符"
+
+msgid "Float To Complex"
+msgstr "实虚浮点拼合复数"
+
+msgid "Float To Int"
+msgstr "浮点转整型"
+
+msgid "Float To Short"
+msgstr "浮点转短整型"
+
+msgid "Float To UChar"
+msgstr "浮点转无符号字符 (UChar)"
+
+msgid "Frame Mapper"
+msgstr "DVB 帧映射器"
+
+msgid "Frame Sync Encoder"
+msgstr "CATV 帧同步编码器"
+
+msgid "Framer Sink 1"
+msgstr "成帧数据接收汇"
+
+msgid "FreeDV demodulator"
+msgstr "FreeDV 数字语音解调器"
+
+msgid "FreeDV modulator"
+msgstr "FreeDV 数字语音调制器"
+
+msgid "Freq. Selective IQ Correction"
+msgstr "频率选择性 IQ 平衡校正"
+
+msgid "Frequency Interleaver"
+msgstr "频率交织器"
+
+msgid "Frequency Mod"
+msgstr "调频调制 (FM Mod)"
+
+msgid "Frequency Selective Fading Model"
+msgstr "频选衰落信道模型"
+
+msgid "Frequency Selective Fading Model2"
+msgstr "频选衰落信道模型 2"
+
+msgid "Frequency Shift"
+msgstr "数字频移混频器 (Freq Shift)"
+
+msgid "Frequency Xlating FFT Filter"
+msgstr "移频 FFT 滤波器"
+
+msgid "Frequency Xlating FIR Filter"
+msgstr "移频 FIR 滤波器"
+
+msgid "Function Probe"
+msgstr "函数探针"
+
+msgid "GFSK Demod"
+msgstr "高斯频移键控解调 (GFSK)"
+
+msgid "GFSK Mod"
+msgstr "高斯频移键控调制 (GFSK)"
+
+msgid "GLFSR Source"
+msgstr "伽罗瓦线性反馈移位源 (GLFSR)"
+
+msgid "GMSK Demod"
+msgstr "高斯最小频移键控解调 (GMSK)"
+
+msgid "GMSK Mod"
+msgstr "高斯最小频移键控调制 (GMSK)"
+
+msgid "GMSK Modulator"
+msgstr "高斯最小频移键控调制 (GMSK)"
+
+msgid "GSM full-rate Audio Decoder"
+msgstr "GSM 全速率 (FR) 音频解码器"
+
+msgid "GSM full-rate Audio Encoder"
+msgstr "GSM 全速率 (FR) 音频编码器"
+
+msgid "Generic Filterbank"
+msgstr "通用信道化滤波器组"
+
+msgid "Goertzel"
+msgstr "戈策尔算法 (单频点 DFT)"
+
+msgid "HDLC Deframer"
+msgstr "HDLC 高级数据链路控制解帧器"
+
+msgid "HDLC Framer"
+msgstr "HDLC 协议成帧器"
+
+msgid "HW Impairments"
+msgstr "硬件射频非理想损伤模型"
+
+msgid "Header/Payload Demux"
+msgstr "报头/负载分流多路解复用器"
+
+msgid "Hierarchical Polyphase Channelizer"
+msgstr "分层多相多通道分解器"
+
+msgid "High-pass Filter Taps"
+msgstr "高通滤波器抽头计算"
+
+msgid "Hilbert"
+msgstr "希尔伯特变换 (解析信号生成)"
+
+msgid "IChar To Complex"
+msgstr "交织字符转复数"
+
+msgid "IIO Attribute Sink"
+msgstr "IIO 设备属性写入 (Sink)"
+
+msgid "IIO Attribute Source"
+msgstr "IIO 设备属性读取 (Source)"
+
+msgid "IIO Attribute Updater"
+msgstr "IIO 属性更新器"
+
+msgid "IIO Device Sink"
+msgstr "IIO 硬件设备发送 (Sink)"
+
+msgid "IIO Device Source"
+msgstr "IIO 硬件设备接收 (Source)"
+
+msgid "IQ Correction Manual Offset"
+msgstr "IQ 不平衡手动偏移校准"
+
+msgid "IQ Imbalance Generator"
+msgstr "IQ 不平衡生成器"
+
+msgid "IShort To Complex"
+msgstr "交织短整型转复数"
+
+msgid "Inner Coder"
+msgstr "DVB 内部卷积编码器"
+
+msgid "Int To Float"
+msgstr "整型转浮点"
+
+msgid "Integrate"
+msgstr "积分器 / 累加求和"
+
+msgid "Interleaved Stream Decimator"
+msgstr "交织数据流抽取器"
+
+msgid "Interleaver"
+msgstr "交织器"
+
+msgid "JSON Config"
+msgstr "JSON 配置文件"
+
+msgid "Keep 1 in N"
+msgstr "周期降采样 (N中留1)"
+
+msgid "Keep M in N"
+msgstr "周期提取 (N中保留M)"
+
+msgid "LDPC Bit Flip Decoder Definition"
+msgstr "LDPC 比特翻转译码对象"
+
+msgid "LDPC Decoder Definition"
+msgstr "LDPC 译码器对象定义"
+
+msgid "LDPC Encoder"
+msgstr "LDPC 纠错编码器"
+
+msgid "LDPC Encoder Definition"
+msgstr "LDPC 编码器对象定义"
+
+msgid "LDPC Encoder Definition (via Generator)"
+msgstr "LDPC 生成矩阵编码对象"
+
+msgid "LDPC Encoder Definition (via Parity Check)"
+msgstr "LDPC 校验矩阵编码对象"
+
+msgid "LDPC Generator Matrix"
+msgstr "LDPC 生成矩阵 (G矩阵)"
+
+msgid "LDPC Parity Check Matrix"
+msgstr "LDPC 奇偶校验矩阵 (H矩阵)"
+
+msgid "LMS DD Equalizer"
+msgstr "判决引导 LMS 自适应均衡器"
+
+msgid "Linear Equalizer"
+msgstr "自适应线性均衡器"
+
+msgid "Log Power FFT"
+msgstr "对数功率谱 (FFT)"
+
+msgid "Log10"
+msgstr "以10为底对数运算 (Log10)"
+
+msgid "Low-pass Filter Taps"
+msgstr "低通滤波器抽头计算"
+
+msgid "M-PSK Receiver"
+msgstr "M-PSK 信号载波时钟同步接收机"
+
+msgid "MFSK Demod"
+msgstr "多进制频移键控解调 (MFSK)"
+
+msgid "MFSK Mod"
+msgstr "多进制频移键控调制 (MFSK)"
+
+msgid "MISO Processing"
+msgstr "多输入单输出处理 (MISO)"
+
+msgid "MPAM Mod"
+msgstr "多电平脉幅度调制 (M-PAM)"
+
+msgid "MPSK SNR Estimator"
+msgstr "MPSK 信噪比估计器 (SNR)"
+
+msgid "MPSK SNR Estimator Probe"
+msgstr "MPSK 信噪比探针"
+
+msgid "MSK Timing Recovery"
+msgstr "MSK 最小频移键控定时恢复"
+
+msgid "Magnitude and Phase To Complex"
+msgstr "模长相位拼合复数 (Mag/Phase to Complex)"
+
+msgid "Map"
+msgstr "整数符号重映射 (Map)"
+
+msgid "Matrix Interleaver"
+msgstr "矩阵交织器"
+
+msgid "Max"
+msgstr "多路信号取最大值 (Max)"
+
+msgid "Message Meta Value to Pair"
+msgstr "消息元数据键值转键值对"
+
+msgid "Message Pair to Var"
+msgstr "消息键值对写入变量"
+
+msgid "Message Strobe Random-Delay"
+msgstr "随机时延消息脉冲发生器"
+
+msgid "Min"
+msgstr "多路信号取最小值 (Min)"
+
+msgid "Modulate Vector"
+msgstr "向量调制器"
+
+msgid "Moving Average"
+msgstr "滑动平均滤波器"
+
+msgid "Multi-Modulus Equalizer (CMA)"
+msgstr "恒模多模均衡器 (CMA)"
+
+msgid "Multiply Conjugate"
+msgstr "乘共轭信号 (混频求共轭)"
+
+msgid "Multiply by Matrix"
+msgstr "矩阵相乘转换"
+
+msgid "Multiply by Tag Value"
+msgstr "按标签数值缩放乘法"
+
+msgid "Mute"
+msgstr "静音/信号置零开关 (Mute)"
+
+msgid "No Connect"
+msgstr "悬空未连端口 (No Connect)"
+
+msgid "Nop"
+msgstr "空操作透传模块 (Nop)"
+
+msgid "Not"
+msgstr "按位非 (NOT)"
+
+msgid "OFDM Carrier Allocator"
+msgstr "OFDM 子载波映射分配器"
+
+msgid "OFDM Channel Estimation"
+msgstr "OFDM 频域信道估计"
+
+msgid "OFDM Cyclic Prefix Inserter"
+msgstr "OFDM 循环前缀 (CP) 插入"
+
+msgid "OFDM Cyclic Prefixer"
+msgstr "OFDM 循环前缀插入 (CP)"
+
+msgid "OFDM Equalizer (Simple)"
+msgstr "OFDM 简易频域单抽头均衡器"
+
+msgid "OFDM Frame Equalizer"
+msgstr "OFDM 整帧自适应频域均衡器"
+
+msgid "OFDM Receiver"
+msgstr "OFDM 接收机 (OFDM Rx)"
+
+msgid "OFDM Serializer"
+msgstr "OFDM 并串转换器"
+
+msgid "OFDM Symbol Acquisition"
+msgstr "OFDM 符号定时捕获"
+
+msgid "OFDM Symbol Synchronizer"
+msgstr "OFDM 符号帧头同步器"
+
+msgid "OFDM Transmitter"
+msgstr "OFDM 发射机 (OFDM Tx)"
+
+msgid "Or"
+msgstr "按位或 (OR)"
+
+msgid "P1 Symbol Insertion"
+msgstr "P1 前导前缀符号插入"
+
+msgid "PCCC Decoder"
+msgstr "PCCC 并行级联卷积码解码"
+
+msgid "PCCC Decoder Combo"
+msgstr "并行级联卷积码解码复合模块 (PCCC)"
+
+msgid "PCCC Encoder"
+msgstr "PCCC 并行级联卷积码编码"
+
+msgid "PDU Filter"
+msgstr "PDU 数据包过滤器"
+
+msgid "PDU Lambda"
+msgstr "PDU 自定义表达式处理 (Lambda)"
+
+msgid "PDU Remove"
+msgstr "PDU 元数据键删除"
+
+msgid "PDU Set"
+msgstr "PDU 元数据设置"
+
+msgid "PDU Split"
+msgstr "PDU 报头与负载分离"
+
+msgid "PDU To Stream"
+msgstr "PDU 转连续数据流"
+
+msgid "PDU to Tagged Stream"
+msgstr "PDU 转带标签流"
+
+msgid "PLL Carrier Regeneration"
+msgstr "锁相环载波再生提取"
+
+msgid "PLL Frequency Detector"
+msgstr "锁相环鉴频器"
+
+msgid "PN Correlator"
+msgstr "伪随机序列相关器 (PN Correlator)"
+
+msgid "POLAR Decoder SC Definition"
+msgstr "极化码 SC 译码对象"
+
+msgid "POLAR Decoder SC List Definition"
+msgstr "极化码 SCL 列表译码对象"
+
+msgid "POLAR Encoder Definition"
+msgstr "极化码 (Polar) 编码对象"
+
+msgid "POLAR code Configurator"
+msgstr "极化码 (Polar) 配置器"
+
+msgid "PSK Demod"
+msgstr "相移键控解调 (PSK Demod)"
+
+msgid "PSK Mod"
+msgstr "相移键控调制 (PSK Mod)"
+
+msgid "Packed to Unpacked"
+msgstr "定包转解包 (Packed to Unpacked)"
+
+msgid "Packet Header Generator (Default)"
+msgstr "默认数据包报头生成器"
+
+msgid "Packet Header Parser (Default)"
+msgstr "默认数据包报头解析器"
+
+msgid "Packet Sink"
+msgstr "数据包接收汇 (Packet Sink)"
+
+msgid "Patterned Interleaver"
+msgstr "模式化自定义交织器"
+
+msgid "Peak Detector"
+msgstr "峰值检测器"
+
+msgid "Peak Detector2"
+msgstr "峰值检测器 2"
+
+msgid "Phase Balance"
+msgstr "相位平衡校准"
+
+msgid "Phase Mod"
+msgstr "调相调制 (PM Mod)"
+
+msgid "Phase Noise Generator"
+msgstr "相位噪声发生器"
+
+msgid "Phase Shift"
+msgstr "静态相移器 (Phase Shift)"
+
+msgid "Physical Layer Framer"
+msgstr "物理层成帧器 (PL Framer)"
+
+msgid "Pilot Generator and IFFT"
+msgstr "导频生成与快速反傅里叶 (IFFT)"
+
+msgid "Plateau Detector"
+msgstr "平顶高电平检测器"
+
+msgid "PlutoSDR Sink"
+msgstr "PlutoSDR 硬件发射端"
+
+msgid "PlutoSDR Source"
+msgstr "PlutoSDR 硬件接收端"
+
+msgid "Polyphase Channelizer"
+msgstr "多相多通道分解器 (Channelizer)"
+
+msgid "Polyphase Decimator"
+msgstr "多相抽取滤波器"
+
+msgid "Polyphase Interpolator"
+msgstr "多相插值滤波器"
+
+msgid "Polyphase Synthesizer"
+msgstr "多相信号合成器 (Synthesizer)"
+
+msgid "Power Squelch"
+msgstr "射频功率静噪门限"
+
+msgid "Preamble Inserter"
+msgstr "同步前导码插入器"
+
+msgid "Probe Avg Mag^2"
+msgstr "平均平方模探针 (功率探针)"
+
+msgid "Probe Constellation (MPS)"
+msgstr "多电平星座图符号探针"
+
+msgid "Probe Density"
+msgstr "符号密度探针"
+
+msgid "Probe Rate"
+msgstr "数据流吞吐采样速率测定 (Probe Rate)"
+
+msgid "Probe Signal"
+msgstr "标量信号探针"
+
+msgid "Probe Signal Vector"
+msgstr "矢量信号探针"
+
+msgid "Protocol Formatter"
+msgstr "协议封装格式化器"
+
+msgid "Protocol Formatter (Async)"
+msgstr "异步协议格式封装器"
+
+msgid "Protocol Parser"
+msgstr "协议解析拆包器"
+
+msgid "Protocol Parser (Async)"
+msgstr "异步协议解包解析器"
+
+msgid "Puncture"
+msgstr "信道打孔 (Puncture)"
+
+msgid "Python Snippet"
+msgstr "Python 代码片段"
+
+msgid "QAM Demod"
+msgstr "正交振幅解调 (QAM)"
+
+msgid "QAM Mod"
+msgstr "正交振幅调制 (QAM)"
+
+msgid "QT GUI App Background"
+msgstr "QT 应用程序背景图"
+
+msgid "QT GUI Az-El Plot"
+msgstr "QT 天线方位俯仰天线图 (Az-El)"
+
+msgid "QT GUI Bercurve Sink"
+msgstr "QT 误码率曲线图 (BER)"
+
+msgid "QT GUI Compass"
+msgstr "QT 罗盘方向指针仪表"
+
+msgid "QT GUI Dial"
+msgstr "QT 旋转旋钮控制件"
+
+msgid "QT GUI Dial Gauge"
+msgstr "QT 旋转刻度表盘"
+
+msgid "QT GUI Digital Number Control"
+msgstr "QT 数字滚轮输入器"
+
+msgid "QT GUI Distance Radar"
+msgstr "QT 距离雷达极坐标图"
+
+msgid "QT GUI Eye Sink"
+msgstr "QT 信号眼图分析仪"
+
+msgid "QT GUI Fast Auto-Correlator Sink"
+msgstr "QT 快速自相关仪"
+
+msgid "QT GUI Graphic Item"
+msgstr "QT 矢量图形显示项"
+
+msgid "QT GUI Graphic Overlay Sample Source"
+msgstr "QT 图形叠加信号源"
+
+msgid "QT GUI LED Indicator"
+msgstr "QT 状态指示灯 (LED)"
+
+msgid "QT GUI Level Gauge"
+msgstr "QT 信号电平柱状图"
+
+msgid "QT GUI Matrix Sink"
+msgstr "QT 二维矩阵热力图"
+
+msgid "QT GUI Message Edit Box"
+msgstr "QT 交互消息输入框"
+
+msgid "QT GUI Msg CheckBox"
+msgstr "QT 消息驱动复选框"
+
+msgid "QT GUI Msg Push Button"
+msgstr "QT 消息瞬时动作按钮"
+
+msgid "QT GUI Numeric Entry"
+msgstr "QT 数值精准输入框"
+
+msgid "QT GUI RFNoC Fosphor Display (Byte Vector)"
+msgstr "QT RFNoC Fosphor 热力谱"
+
+msgid "QT GUI Sink"
+msgstr "QT 通用综合信号观测仪"
+
+msgid "QT GUI Time Raster Sink"
+msgstr "QT 光栅时序扫描图"
+
+msgid "QT GUI Toggle Button"
+msgstr "QT 开关动作按钮"
+
+msgid "QT GUI Toggle Switch"
+msgstr "QT 拨动式电源开关"
+
+msgid "Quantizer"
+msgstr "量化器 (ADC 仿真)"
+
+msgid "RFNoC Add/Subtract"
+msgstr "RFNoC 硬件加减法器"
+
+msgid "RFNoC DDC"
+msgstr "RFNoC 数字下变频器 (DDC)"
+
+msgid "RFNoC DRAM Replay/Capture"
+msgstr "RFNoC 内存回放与捕获 (DRAM Replay)"
+
+msgid "RFNoC DUC"
+msgstr "RFNoC 数字上变频器 (DUC)"
+
+msgid "RFNoC Device BSP"
+msgstr "RFNoC 设备板级支持包 (BSP)"
+
+msgid "RFNoC F15 (FPGA Fosphor)"
+msgstr "RFNoC FPGA Fosphor 频谱瀑布流"
+
+msgid "RFNoC F15 Block"
+msgstr "RFNoC F15 模块"
+
+msgid "RFNoC FFT"
+msgstr "RFNoC 硬件快速傅里叶变换 (FFT)"
+
+msgid "RFNoC FIR Filter"
+msgstr "RFNoC 硬件 FIR 滤波器"
+
+msgid "RFNoC Fast Add-Subtract Block"
+msgstr "RFNoC 快速加减法模块"
+
+msgid "RFNoC Fast Fourier Transform (FFT) Block"
+msgstr "RFNoC 高速 FFT 模块"
+
+msgid "RFNoC Graph (Device)"
+msgstr "RFNoC 拓扑图容器 (设备图)"
+
+msgid "RFNoC Keep One in N Block"
+msgstr "RFNoC N中留一抽取模块"
+
+msgid "RFNoC Keep One-in-N"
+msgstr "RFNoC 硬件 N 中留一抽取"
+
+msgid "RFNoC Log-Power Block"
+msgstr "RFNoC 硬件对数功率计算"
+
+msgid "RFNoC Motherboard Controller"
+msgstr "RFNoC 母板控制器"
+
+msgid "RFNoC Moving Average Block"
+msgstr "RFNoC 硬件滑动平均模块"
+
+msgid "RFNoC Null Source Sink Block"
+msgstr "RFNoC 空源汇模块"
+
+msgid "RFNoC Null Source/Sink"
+msgstr "RFNoC 空数据收发器"
+
+msgid "RFNoC Radio"
+msgstr "RFNoC 射频收发前端 (Radio)"
+
+msgid "RFNoC Rx Streamer"
+msgstr "RFNoC 接收数据流转换器"
+
+msgid "RFNoC Signal Generator"
+msgstr "RFNoC 硬件信号源发生器"
+
+msgid "RFNoC Split Stream"
+msgstr "RFNoC 数据流分支器"
+
+msgid "RFNoC Split Stream Block"
+msgstr "RFNoC 数据流拆分模块"
+
+msgid "RFNoC Switchboard"
+msgstr "RFNoC 交叉路由交换板"
+
+msgid "RFNoC Switchboard Block"
+msgstr "RFNoC 交换板路由模块"
+
+msgid "RFNoC Tx Streamer"
+msgstr "RFNoC 发送数据流转换器"
+
+msgid "RFNoC Vector IIR"
+msgstr "RFNoC 矢量 IIR 滤波器"
+
+msgid "RFNoC Vector IIR Block"
+msgstr "RFNoC 矢量 IIR 模块"
+
+msgid "RFNoC Window"
+msgstr "RFNoC 硬件加窗乘法器"
+
+msgid "RMS"
+msgstr "均方根值计算 (RMS)"
+
+msgid "RRC Filter Taps"
+msgstr "根升余弦滤波器抽头计算"
+
+msgid "Rail"
+msgstr "动态范围钳位限幅 (Rail)"
+
+msgid "Random PDU Generator"
+msgstr "随机 PDU 数据包生成器"
+
+msgid "Random Source"
+msgstr "随机信号源"
+
+msgid "Random Uniform Source"
+msgstr "均匀分布随机源"
+
+msgid "Randomizer"
+msgstr "广播扰乱器"
+
+msgid "Reed-Solomon Decoder"
+msgstr "里德-所罗门 (RS) 译码器"
+
+msgid "Reed-Solomon Encoder"
+msgstr "里德-所罗门 (RS) 编码器"
+
+msgid "Reference Signals"
+msgstr "参考导频信号注入"
+
+msgid "Regenerate"
+msgstr "时钟脉冲再生器"
+
+msgid "Remove DC Spike"
+msgstr "直流尖峰滤除 (DC Spike Removal)"
+
+msgid "Remove DC Spike AutoSync"
+msgstr "直流尖峰滤除 (自动同步)"
+
+msgid "Repack Bits"
+msgstr "比特流重打包重组 (Repack Bits)"
+
+msgid "Repetition Decoder Definition"
+msgstr "重复码译码对象"
+
+msgid "Repetition Encoder Definition"
+msgstr "重复码编码对象"
+
+msgid "Replay Msg Push Button"
+msgstr "回放控制消息按钮"
+
+msgid "Rotator"
+msgstr "复数数字旋转器 (数字混频)"
+
+msgid "SCCC Decoder"
+msgstr "SCCC 串行级联卷积码解码"
+
+msgid "SCCC Decoder Combo"
+msgstr "串行级联卷积码解码复合模块 (SCCC)"
+
+msgid "SCCC Encoder"
+msgstr "SCCC 串行级联卷积码编码"
+
+msgid "SISO"
+msgstr "软进软出算法模块 (SISO)"
+
+msgid "SISO Combo"
+msgstr "软进软出联合模块 (SISO)"
+
+msgid "SRO Model"
+msgstr "采样率偏移模型 (SRO)"
+
+msgid "Sample and Hold"
+msgstr "采样与保持 (Sample & Hold)"
+
+msgid "Scalar Multiply Const"
+msgstr "乘标量常数"
+
+msgid "Schmidl & Cox OFDM synch."
+msgstr "施密德尔-考克斯 OFDM 同步 (S&C Sync)"
+
+msgid "Scrambler"
+msgstr "数字扰乱器"
+
+msgid "Second Order Distortion"
+msgstr "二阶非线性失真模型"
+
+msgid "Selector"
+msgstr "流路多选一切换开关 (Selector)"
+
+msgid "Short To Char"
+msgstr "短整型转字符"
+
+msgid "Short To Float"
+msgstr "短整型转浮点"
+
+msgid "SigMF Sink (Minimal)"
+msgstr "SigMF 规范文件写入"
+
+msgid "SigMF Source (Minimal)"
+msgstr "SigMF 规范文件读取"
+
+msgid "Simple Correlator"
+msgstr "简易前导同步相关器"
+
+msgid "Simple Framer"
+msgstr "简易数据流成帧器"
+
+msgid "Soapy AirspyHF Source"
+msgstr "Soapy AirspyHF 接收源"
+
+msgid "Soapy BladeRF Sink"
+msgstr "Soapy BladeRF 发送端"
+
+msgid "Soapy BladeRF Source"
+msgstr "Soapy BladeRF 接收源"
+
+msgid "Soapy Custom Sink"
+msgstr "Soapy 通用 SDR 发送端"
+
+msgid "Soapy Custom Source"
+msgstr "Soapy 通用 SDR 接收源"
+
+msgid "Soapy LimeSDR Sink"
+msgstr "Soapy LimeSDR 发送端"
+
+msgid "Soapy LimeSDR Source"
+msgstr "Soapy LimeSDR 接收源"
+
+msgid "Soapy PLUTO Sink"
+msgstr "Soapy PlutoSDR 发送端"
+
+msgid "Soapy PLUTO Source"
+msgstr "Soapy PlutoSDR 接收源"
+
+msgid "Soapy RTLSDR Source"
+msgstr "Soapy RTL-SDR 电视棒接收源"
+
+msgid "Soapy SDRPlay Source"
+msgstr "Soapy SDRPlay 接收源"
+
+msgid "Soapy Sink"
+msgstr "Soapy SDR 发射接收端"
+
+msgid "Soapy Source"
+msgstr "Soapy SDR 硬件接收源"
+
+msgid "Socket PDU"
+msgstr "套接字 PDU 通信"
+
+msgid "Standard Squelch"
+msgstr "标准静噪门限"
+
+msgid "Stream CRC32"
+msgstr "数据流 CRC32 校验"
+
+msgid "Stream Demux"
+msgstr "流按长度时隙解复用 (Stream Demux)"
+
+msgid "Stream Endpoint"
+msgstr "RFNoC 数据流端点"
+
+msgid "Stream Mux"
+msgstr "流按长度时隙多路复用 (Stream Mux)"
+
+msgid "Stream to Tagged Stream"
+msgstr "数据流定时插入包长标签"
+
+msgid "Stream to Vec Decim"
+msgstr "流转矢量降采样抽取"
+
+msgid "Streams to Vector"
+msgstr "多路流合并为矢量 (Streams to Vector)"
+
+msgid "Stretch"
+msgstr "浮点信号动态拉伸"
+
+msgid "Swap IQ"
+msgstr "交换 IQ 通道 (Swap IQ)"
+
+msgid "Symbol Inner Interleaver"
+msgstr "符号内交织器"
+
+msgid "TCP Sink"
+msgstr "TCP 发送端"
+
+msgid "TCP Source"
+msgstr "TCP 接收端"
+
+msgid "TPC Decoder Definition"
+msgstr "TPC Turbo乘积码译码对象"
+
+msgid "TPC Encoder Definition"
+msgstr "TPC Turbo乘积码编码对象"
+
+msgid "TUNTAP PDU"
+msgstr "虚拟网卡 TUNTAP PDU"
+
+msgid "Tag Object"
+msgstr "流标签对象定义"
+
+msgid "Tag Share"
+msgstr "多路流共享标签传播"
+
+msgid "Tagged File Sink"
+msgstr "按包长标签分片保存文件"
+
+msgid "Tagged Stream Align"
+msgstr "带标签流边界时序对齐"
+
+msgid "Tagged Stream Multiply Length Tag"
+msgstr "带标签流包长标签缩放"
+
+msgid "Tagged Stream Mux"
+msgstr "带标签流多路合并复用器"
+
+msgid "Tagged Stream to PDU"
+msgstr "带标签流转 PDU"
+
+msgid "Tags Strobe"
+msgstr "周期性注入标签脉冲"
+
+msgid "Tags To PDU"
+msgstr "流标签提取为 PDU"
+
+msgid "Take/Skip To PDU"
+msgstr "抽取/截取转 PDU"
+
+msgid "Test Tag Variable Rate"
+msgstr "变采样率标签传递测试"
+
+msgid "Third Order Distortion"
+msgstr "三阶非线性失真模型"
+
+msgid "Threshold"
+msgstr "带滞回迟滞阈值比较器 (Threshold)"
+
+msgid "Throttle (old)"
+msgstr "速率节流阀 (旧版)"
+
+msgid "Time Delta"
+msgstr "时间差值计算 (Delta)"
+
+msgid "Tone Reservation PAPR"
+msgstr "保留载波法峰均比抑制 (PAPR)"
+
+msgid "Transcendental"
+msgstr "超越函数运算 (sin/cos/exp/tan)"
+
+msgid "Transport Framing Encoder"
+msgstr "传输层成帧编码器"
+
+msgid "Trellis Encoder"
+msgstr "网格编码器"
+
+msgid "Trellis Metrics"
+msgstr "网格距离度量计算"
+
+msgid "Trellis Permutation"
+msgstr "网格交织置换"
+
+msgid "UChar To Float"
+msgstr "无符号字符转浮点"
+
+msgid "UDP Sink"
+msgstr "UDP 发送端"
+
+msgid "UDP Source"
+msgstr "UDP 接收端"
+
+msgid "UHD: USRP Async Msg Source"
+msgstr "USRP 异步事件消息源"
+
+msgid "Unpacked to Packed"
+msgstr "解包转定包 (Unpacked to Packed)"
+
+msgid "VCO (complex)"
+msgstr "压控振荡器 (复数 VCO)"
+
+msgid "Variable Save Restore"
+msgstr "变量状态持久化保存与恢复"
+
+msgid "Variable to Message"
+msgstr "变量变更广播为消息"
+
+msgid "Vector Insert"
+msgstr "周期性插入固定矢量数据"
+
+msgid "Vector to Streams"
+msgstr "矢量拆分为多路数据流 (Vector to Streams)"
+
+msgid "Video SDL Sink"
+msgstr "SDL 视频播放接收端"
+
+msgid "Viterbi"
+msgstr "维特比译码器 (Viterbi)"
+
+msgid "Viterbi Combo"
+msgstr "维特比译码复合模块 (Viterbi)"
+
+msgid "Viterbi Decoder"
+msgstr "维特比译码器"
+
+msgid "WBFM Receive PLL"
+msgstr "宽带调频锁相解调接收机"
+
+msgid "Wav File Sink"
+msgstr "WAV 音频文件输出保存"
+
+msgid "Wav File Source"
+msgstr "WAV 音频文件读取信号源"
+
+msgid "XMLRPC Client"
+msgstr "XML-RPC 远程调用客户端"
+
+msgid "XMLRPC Server"
+msgstr "XML-RPC 远程控制服务端"
+
+msgid "Xor"
+msgstr "按位异或 (XOR)"
+
+msgid "YAML Config"
+msgstr "YAML 配置文件"
+
+msgid "ZMQ PUB Message Sink"
+msgstr "ZMQ PUB 异步消息发布"
+
+msgid "ZMQ PUB Sink"
+msgstr "ZMQ PUB 数据流发布"
+
+msgid "ZMQ PULL Message Source"
+msgstr "ZMQ PULL 异步消息拉取"
+
+msgid "ZMQ PULL Source"
+msgstr "ZMQ PULL 数据流拉取"
+
+msgid "ZMQ PUSH Message Sink"
+msgstr "ZMQ PUSH 异步消息推送"
+
+msgid "ZMQ PUSH Sink"
+msgstr "ZMQ PUSH 数据流推送"
+
+msgid "ZMQ REP Message Sink"
+msgstr "ZMQ REP 响应端消息写入"
+
+msgid "ZMQ REP Sink"
+msgstr "ZMQ REP 响应端数据流"
+
+msgid "ZMQ REQ Message Source"
+msgstr "ZMQ REQ 请求端消息读取"
+
+msgid "ZMQ REQ Source"
+msgstr "ZMQ REQ 请求端数据流"
+
+msgid "ZMQ SUB Message Source"
+msgstr "ZMQ SUB 异步消息订阅"
+
+msgid "ZMQ SUB Source"
+msgstr "ZMQ SUB 数据流订阅"
+
+msgid "g711 Alaw Audio Encoder"
+msgstr "G.711 A律音频编码器"
+
+msgid "g721 Audio Decoder"
+msgstr "G.721 ADPCM 音频解码器"
+
+msgid "g721 Audio Encoder"
+msgstr "G.721 ADPCM 音频编码器"
+
+msgid "g723_24 Audio Decoder"
+msgstr "G.723 24kbps 音频解码器"
+
+msgid "g723_24 Audio Encoder"
+msgstr "G.723 24kbps 音频编码器"
+
+msgid "g723_40 Audio Decoder"
+msgstr "G.723 40kbps 音频解码器"
+
+msgid "g723_40 Audio Encoder"
+msgstr "G.723 40kbps 音频编码器"
+
+msgid "systematic POLAR Decoder SC Definition"
+msgstr "系统极化码 SC 译码对象"
+
+msgid "systematic POLAR Encoder Definition"
+msgstr "系统极化码编码对象"
+
+msgid "ulaw Audio Decoder"
+msgstr "G.711 μ律音频解码器"
+
+msgid "ulaw Audio Encoder"
+msgstr "G.711 μ律音频编码器"
+
+
+# =============================================================================
+# 8. 常用关键参数与控件属性深度汉化 (Block Parameters & GUI Controls)
+# =============================================================================
+
+msgid "Address"
+msgstr "设备/网络地址"
+
+msgid "Alpha"
+msgstr "滚降系数 (Alpha)"
+
+msgid "Autoscale"
+msgstr "自动刻度缩放"
+
+msgid "Bandwidth (Hz)"
+msgstr "信道带宽 (Hz)"
+
+msgid "Beta"
+msgstr "形状参数 (Beta)"
+
+msgid "Block Descriptor"
+msgstr "模块描述符"
+
+msgid "Block Size"
+msgstr "数据块大小"
+
+msgid "Carrier Frequency (Hz)"
+msgstr "载波频率 (Hz)"
+
+msgid "Center Freq (Hz)"
+msgstr "中心频率 (Hz)"
+
+msgid "Code rate"
+msgstr "编码速率 (码率)"
+
+msgid "Constellation"
+msgstr "星座图配置"
+
+msgid "Control Panel"
+msgstr "显示控制侧边栏"
+
+msgid "Default Value"
+msgstr "默认初始值"
+
+msgid "Device arguments"
+msgstr "设备启动参数"
+
+msgid "Dimension 1"
+msgstr "维度 1"
+
+msgid "Dimension 2"
+msgstr "维度 2"
+
+msgid "Dither"
+msgstr "抖动加扰 (Dither)"
+
+msgid "FECFRAME size"
+msgstr "FEC 帧大小"
+
+msgid "FFT Size"
+msgstr "FFT 点数"
+
+msgid "GUI Hint"
+msgstr "界面排版提示 (GUI Hint)"
+
+msgid "Grid"
+msgstr "显示坐标网格"
+
+msgid "IO Type"
+msgstr "输入输出类型"
+
+msgid "Ignore Me"
+msgstr "忽略占位"
+
+msgid "Label"
+msgstr "标签名称"
+
+msgid "Length"
+msgstr "数据长度"
+
+msgid "Length Tag Name"
+msgstr "包长标签名"
+
+msgid "Line 1 Color"
+msgstr "曲线 1 颜色"
+
+msgid "Line 1 Label"
+msgstr "曲线 1 标签"
+
+msgid "Line 1 Marker"
+msgstr "曲线 1 标记符"
+
+msgid "Line 1 Style"
+msgstr "曲线 1 线型"
+
+msgid "Line 1 Width"
+msgstr "曲线 1 线宽"
+
+msgid "Line 10 Color"
+msgstr "曲线 10 颜色"
+
+msgid "Line 10 Label"
+msgstr "曲线 10 标签"
+
+msgid "Line 2 Color"
+msgstr "曲线 2 颜色"
+
+msgid "Line 2 Label"
+msgstr "曲线 2 标签"
+
+msgid "Line 2 Marker"
+msgstr "曲线 2 标记符"
+
+msgid "Line 2 Style"
+msgstr "曲线 2 线型"
+
+msgid "Line 2 Width"
+msgstr "曲线 2 线宽"
+
+msgid "Line 3 Color"
+msgstr "曲线 3 颜色"
+
+msgid "Line 3 Label"
+msgstr "曲线 3 标签"
+
+msgid "Line 4 Color"
+msgstr "曲线 4 颜色"
+
+msgid "Line 4 Label"
+msgstr "曲线 4 标签"
+
+msgid "Line 5 Color"
+msgstr "曲线 5 颜色"
+
+msgid "Line 5 Label"
+msgstr "曲线 5 标签"
+
+msgid "Line 6 Color"
+msgstr "曲线 6 颜色"
+
+msgid "Line 6 Label"
+msgstr "曲线 6 标签"
+
+msgid "Line 7 Color"
+msgstr "曲线 7 颜色"
+
+msgid "Line 7 Label"
+msgstr "曲线 7 标签"
+
+msgid "Line 8 Color"
+msgstr "曲线 8 颜色"
+
+msgid "Line 8 Label"
+msgstr "曲线 8 标签"
+
+msgid "Line 9 Color"
+msgstr "曲线 9 颜色"
+
+msgid "Line 9 Label"
+msgstr "曲线 9 标签"
+
+msgid "Max Deviation"
+msgstr "最大频偏"
+
+msgid "Maximum"
+msgstr "最大值"
+
+msgid "Minimum"
+msgstr "最小值"
+
+msgid "Mode"
+msgstr "工作模式"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "Num Inputs"
+msgstr "输入端数量"
+
+msgid "Number of Inputs"
+msgstr "输入端数量"
+
+msgid "Number of Points"
+msgstr "采样点数"
+
+msgid "Number of Ports"
+msgstr "端口数量"
+
+msgid "PAPR Mode"
+msgstr "峰均比模式 (PAPR)"
+
+msgid "Parallelism"
+msgstr "并行处理数"
+
+msgid "RFNoC Block Type"
+msgstr "RFNoC 模块类型"
+
+msgid "Samples/Symbol"
+msgstr "符号采样点数 (sps)"
+
+msgid "Scale"
+msgstr "幅度缩放因子"
+
+msgid "Seed"
+msgstr "随机数种子"
+
+msgid "Show Msg Ports"
+msgstr "显示消息端口"
+
+msgid "Step"
+msgstr "调节步进值"
+
+msgid "Timeout (msec)"
+msgstr "超时时限 (毫秒)"
+
+msgid "Trigger Channel"
+msgstr "触发输入通道"
+
+msgid "Trigger Delay"
+msgstr "触发延迟时间"
+
+msgid "Trigger Level"
+msgstr "触发电平门限"
+
+msgid "Trigger Mode"
+msgstr "触发模式"
+
+msgid "Trigger Slope"
+msgstr "触发极性 (边沿)"
+
+msgid "Trigger Tag Key"
+msgstr "触发标签键名"
+
+msgid "Type"
+msgstr "数据类型"
+
+msgid "Unbuffered"
+msgstr "无缓存实时写入"
+
+msgid "Update Period"
+msgstr "刷新周期 (秒)"
+
+msgid "VCO Sensitivity"
+msgstr "压控振荡器灵敏度"
+
+msgid "Vector Length"
+msgstr "向量长度"
+

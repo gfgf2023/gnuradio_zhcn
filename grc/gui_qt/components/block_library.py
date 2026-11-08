@@ -57,13 +57,19 @@ class BlockSearchBar(QLineEdit):
 
     def on_return_pressed(self):
         block_key = None
-        label = self.text()
+        label = self.text().strip()
         if label in self.parent._block_tree_flat:
             block_key = self.parent._block_tree_flat[label].key
         else:
-            label = self.first_block_in_results()
-            if label in self.parent._block_tree_flat:
-                block_key = self.parent._block_tree_flat[label].key
+            first_label = self.first_block_in_results()
+            if first_label in self.parent._block_tree_flat:
+                block_key = self.parent._block_tree_flat[first_label].key
+        if not block_key and label:
+            query = label.lower()
+            for k, blk in self.parent._block_tree_flat.items():
+                if k.lower() == query:
+                    block_key = blk.key
+                    break
         if block_key:
             self.parent.add_block(block_key)
         else:
@@ -84,8 +90,8 @@ class LibraryView(QTreeView):
         QTreeView.__init__(self, parent)
         self.library = parent.parent()
         self.contextMenu = QMenu()
-        self.example_action = QAction("Examples...")
-        self.add_to_fg_action = QAction("Add to flowgraph")
+        self.example_action = QAction(_("Examples..."))
+        self.add_to_fg_action = QAction(_("Add to flowgraph"))
         self.example_action.triggered.connect(self.view_examples)
         self.add_to_fg_action.triggered.connect(self.add_block)
         self.contextMenu.addAction(self.example_action)
@@ -96,11 +102,12 @@ class LibraryView(QTreeView):
     def updateDocTab(self):
         label = self.model().data(self.currentIndex())
         if label in self.parent().parent()._block_tree_flat:
+            blk = self.parent().parent()._block_tree_flat[label]
             prefix = str(
                 self.parent().parent().platform.config.wiki_block_docs_url_prefix
             )
             self.parent().parent().app.WikiTab.setURL(
-                QUrl(prefix + label.replace(" ", "_"))
+                QUrl(prefix + blk.label.replace(" ", "_"))
             )
 
     def contextMenuEvent(self, event):
@@ -125,7 +132,7 @@ class BlockLibrary(QDockWidget, base.Component):
         self.blocklibrary_expanded = self.qsettings.value('grc/blocklibrary_expanded', type=bool)
 
         self.setObjectName("block_library")
-        self.setWindowTitle("Block Library")
+        self.setWindowTitle(_("Block Library"))
 
         # TODO: Pull from preferences and revert to default if not found?
         self.resize(400, 300)
@@ -163,7 +170,7 @@ class BlockLibrary(QDockWidget, base.Component):
         self._library = library
 
         search_bar = BlockSearchBar(self)
-        search_bar.setPlaceholderText("Find a block")
+        search_bar.setPlaceholderText(_("Find a block"))
         self._search_bar = search_bar
 
         # Add widgets to the component
@@ -231,10 +238,19 @@ class BlockLibrary(QDockWidget, base.Component):
         pass
 
     def show_search_results(self):
-        if self._search_bar.text() == '':
+        query = self._search_bar.text().strip().lower()
+        if not query:
             self.populate_tree(self._block_tree)
         else:
-            self.populate_tree(self._block_tree, get_items(self._search_bar.completer().completionModel()))
+            matching = set()
+            for key, blk in self.platform.blocks.items():
+                lbl = getattr(blk, 'label', '')
+                trans = _(lbl) if lbl else ''
+                if (query in lbl.lower()) or (query in trans.lower()) or (query in key.lower()):
+                    matching.add(lbl)
+                    matching.add(trans)
+                    matching.add(key)
+            self.populate_tree(self._block_tree, matching)
 
     def reset(self):
         """Reset the filter (show all blocks in the tree view)"""
@@ -251,10 +267,6 @@ class BlockLibrary(QDockWidget, base.Component):
         for block in self.platform.blocks.values():
             if block.category:
                 # Blocks with None category should be left out for whatever reason (e.g. not installed)
-                # print(block.category) # in list form, e.g. ['Core', 'Digital Television', 'ATSC']
-                # print(block.label) # label GRC uses to name block
-                # print(block.key) # actual block name (i.e. class name)
-
                 # Create a copy of the category list so things can be removed without changing the original list
                 category = block.category[:]
 
@@ -272,6 +284,10 @@ class BlockLibrary(QDockWidget, base.Component):
                 # Add a reference to the block object to the proper subtree
                 sub_tree[block.label] = block
                 self._block_tree_flat[block.label] = block
+                trans_label = _(block.label)
+                if trans_label != block.label:
+                    self._block_tree_flat[trans_label] = block
+                self._block_tree_flat[block.key] = block
         # Save a reference to the block tree in case it is needed later
         self._block_tree = block_tree
 
@@ -303,7 +319,7 @@ class BlockLibrary(QDockWidget, base.Component):
                 child_item = QStandardItem()
                 child_item.setEditable(False)
                 if type(obj) is dict:  # It's a category
-                    child_item.setText(name)
+                    child_item.setText(_(name))
                     child_item.setDragEnabled(
                         False
                     )  # categories should not be draggable
@@ -312,11 +328,11 @@ class BlockLibrary(QDockWidget, base.Component):
                     else:
                         found = True
                 else:  # It's a block
-                    if v_blocks and not name in v_blocks:
+                    if v_blocks and not (name in v_blocks or (obj.label in v_blocks) or (_(obj.label) in v_blocks) or (obj.key in v_blocks)):
                         continue
                     else:
                         found = True
-                    child_item.setText(obj.label)
+                    child_item.setText(_(obj.label))
                     child_item.setDragEnabled(True)
                     child_item.setSelectable(True)
                     child_item.setData(

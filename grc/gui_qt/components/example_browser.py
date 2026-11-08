@@ -55,7 +55,7 @@ class ExampleBrowserDialog(QDialog):
         self.setMinimumSize(600, 400)
         self.setModal(True)
 
-        self.setWindowTitle("GRC Examples")
+        self.setWindowTitle(_("GRC Examples"))
         self.browser = browser
         self.layout = QVBoxLayout()
         self.setLayout(self.layout)

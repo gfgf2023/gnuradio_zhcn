@@ -35,6 +35,7 @@ class ExecFlowGraphThread(threading.Thread):
             if not self.process:
                 return
 
+            self.view.process = self.process
             self.update_callback()
             self.start()
         except Exception as e:
@@ -89,10 +90,17 @@ class ExecFlowGraphThread(threading.Thread):
             # Wait for the process to fully terminate
             time.sleep(0.05)
 
-        self.done
+        self.done()
 
     def done(self):
         """Perform end of execution tasks."""
-        Messages.send_end_exec(self.process.returncode)
+        code = self.process.returncode
+        Messages.send_end_exec(code)
+        if code != 0:
+            Messages.send(
+                "\n[提示] 流图进程已退出 (返回码: %s)。\n"
+                "如果上述输出包含 'No module named gnuradio'，说明当前 Windows 环境尚未编译安装 GNU Radio C++ 运行时库。\n"
+                "GRC 已成功完成流图解析与 Python 源码生成！生成的代码可在具备 GNU Radio 运行时的环境 (如 Linux、WSL 或 Radioconda) 中直接执行。\n" % code
+            )
         self.view.process = None
         self.update_callback()

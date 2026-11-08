@@ -38,7 +38,7 @@ class VariableEditor(QDockWidget, base.Component):
         self.qsettings = self.app.qsettings
 
         self.setObjectName('variable_editor')
-        self.setWindowTitle('Variable Editor')
+        self.setWindowTitle(_('Variable Editor'))
 
         self.right_click_menu = VariableEditorContextMenu(self)
         self.scene = None
@@ -47,7 +47,7 @@ class VariableEditor(QDockWidget, base.Component):
         self._tree = QTreeWidget()
         self._model = self._tree.model()
         self._tree.setObjectName('variable_editor::tree_widget')
-        self._tree.setHeaderLabels(["ID", "Value", ""])
+        self._tree.setHeaderLabels([_("ID"), _("Value"), ""])
         self.setWidget(self._tree)
         self.currently_rebuilding = True
         self._model.dataChanged.connect(self.handle_change)

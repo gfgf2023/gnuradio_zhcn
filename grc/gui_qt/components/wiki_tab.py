@@ -36,7 +36,7 @@ class WikiTab(QDockWidget, base.Component):
         self.qsettings = self.app.qsettings
 
         self.setObjectName('wiki_tab')
-        self.setWindowTitle('Wiki')
+        self.setWindowTitle(_('Wiki'))
 
         self.setFloating(False)
 

@@ -70,7 +70,7 @@ class FlowgraphView(
             block.context_menu(event.globalPos())
         else:
             empty_menu = QMenu()
-            no_action = QAction("No block selected", enabled=False)
+            no_action = QAction(_("No block selected"), enabled=False)
             empty_menu.addAction(no_action)
             empty_menu.exec(event.globalPos())
 

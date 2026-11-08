@@ -116,10 +116,39 @@ def run_qt(args, log):
     settings = properties.Properties(sys.argv)
 
     ''' Translation Support '''
-    # Try to get the current locale. Always add English
-    lc, encoding = locale.getdefaultlocale()
-    if lc:
-        languages = [lc]
+    selected_lang = getattr(args, 'language', None)
+    if not selected_lang:
+        try:
+            from PyQt6.QtCore import QSettings
+            qsettings = QSettings()
+            pref_lang = qsettings.value('grc/language', 'auto', type=str)
+            if pref_lang and pref_lang != 'auto':
+                selected_lang = pref_lang
+        except Exception:
+            pass
+
+    languages = []
+    if selected_lang and selected_lang != 'auto':
+        languages.append(selected_lang)
+    else:
+        # Auto detection from environment and locale
+        env_lang = os.environ.get('LANG', '') or os.environ.get('LC_ALL', '') or os.environ.get('LC_MESSAGES', '')
+        lc = None
+        try:
+            lc, _ = locale.getlocale()
+        except Exception:
+            pass
+        if not lc:
+            try:
+                lc, _ = locale.getdefaultlocale()
+            except Exception:
+                pass
+
+        if (lc and ('zh' in str(lc).lower() or 'chinese' in str(lc).lower())) or ('zh' in env_lang.lower()):
+            languages.append('zh_CN')
+        elif lc:
+            languages.append(lc)
+
     languages += settings.DEFAULT_LANGUAGE
     log.debug("Using locale - %s" % str(languages))
 
@@ -207,6 +236,10 @@ def main():
     # Logging support
     parser.add_argument('--log', choices=['debug', 'info', 'warning', 'error', 'critical'], default='info')
     # TODO: parser.add_argument('--log-output')
+
+    # Interface language
+    parser.add_argument('-l', '--language', choices=['auto', 'zh_CN', 'en_US'], default=None,
+                        help="Choose interface language (zh_CN, en_US)")
 
     # Graphics framework (QT or GTK)
     gui_group = parser.add_argument_group('Framework')

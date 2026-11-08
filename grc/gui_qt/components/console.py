@@ -24,7 +24,7 @@ import textwrap
 
 # Third-party  modules
 
-from PyQt6.QtCore import QMetaObject, Qt
+from PyQt6.QtCore import QMetaObject, Qt, pyqtSignal
 from PyQt6.QtGui import QIcon, QKeySequence, QAction
 from PyQt6.QtWidgets import QDockWidget, QHBoxLayout, QMenu, QTextEdit, QToolBar, QWidget
 
@@ -80,13 +80,16 @@ HTML = '''
 
 
 class Console(QDockWidget, base.Component):
+    message_signal = pyqtSignal(str)
+
     def __init__(self, level):
         super(Console, self).__init__()
 
+        self.message_signal.connect(self.add_line)
         self.qsettings = self.app.qsettings
 
         self.setObjectName('console')
-        self.setWindowTitle('Console')
+        self.setWindowTitle(_('Console'))
         self.level = level
 
         # GUI Widgets
@@ -162,6 +165,11 @@ class Console(QDockWidget, base.Component):
 
     def enable(self):
         self.enabled = True
+        try:
+            from ...core import Messages
+            Messages.register_messenger(lambda msg: self.message_signal.emit(msg.rstrip('\r\n')) if msg.strip() else None)
+        except Exception:
+            pass
 
     # Actions
 
@@ -183,7 +191,7 @@ class Console(QDockWidget, base.Component):
 
         log.debug("Creating menus")
 
-        console_menu = QMenu("&Console")
+        console_menu = QMenu(_("&Console"))
         console_menu.setObjectName("console::menu")
 
         # Not needed, we have FileHandler logging in main.py

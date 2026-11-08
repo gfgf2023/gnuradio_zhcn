@@ -168,20 +168,22 @@ class GUIBlock(QGraphicsItem):
 
         # Figure out width of block based on widest line of text
         fm = QFontMetrics(self.font)
-        largest_width = fm.horizontalAdvance(self.core.label)
+        display_label = _(self.core.label)
+        largest_width = fm.horizontalAdvance(display_label)
         if self.core.is_dummy_block:
             full_line = "key: " + self.core.key
             if fm.horizontalAdvance(full_line) > largest_width:
                 largest_width = fm.horizontalAdvance(full_line)
         else:
             for key, item in self.core.params.items():
-                name = item.name
+                name = _(item.name)
                 value = item.value
                 if (value is not None and item.hide == "none") or (item.dtype == 'id' and self.force_show_id):
                     if len(value) > LONG_VALUE:
                         value = value[:LONG_VALUE - 3] + '...'
 
-                    value_label = item.options[value] if value in item.options else value
+                    val_raw = item.options[value] if value in item.options else value
+                    value_label = _(val_raw) if val_raw in item.options.values() else val_raw
                     full_line = name + ": " + value_label
 
                     if fm.horizontalAdvance(full_line) > largest_width:
@@ -312,7 +314,7 @@ class GUIBlock(QGraphicsItem):
         painter.drawText(
             QRectF(0, 0 - self.height / 2 + 15, self.width, self.height),
             Qt.AlignmentFlag.AlignCenter,
-            self.core.label,
+            _(self.core.label),
         )
 
         # Draw param text
@@ -343,7 +345,7 @@ class GUIBlock(QGraphicsItem):
             y_offset += 20
         else:
             for key, item in self.core.params.items():
-                name = item.name
+                name = _(item.name)
                 value = item.value
                 is_evaluated = item.value != str(item.get_evaluated())
 
@@ -351,7 +353,8 @@ class GUIBlock(QGraphicsItem):
 
                 # Include the value defined by the user (after evaluation)
                 if not is_evaluated or self.show_param_val or not self.show_param_expr:
-                    display_value += item.options[value] if value in item.options else value  # TODO: pretty_print
+                    val_raw = item.options[value] if value in item.options else value
+                    display_value += _(val_raw) if val_raw in item.options.values() else str(val_raw)  # TODO: pretty_print
 
                 # Include the expression that was evaluated to get the value
                 if is_evaluated and self.show_param_expr:
@@ -416,7 +419,7 @@ class GUIBlock(QGraphicsItem):
 
     def context_menu(self, pos):
         self.right_click_menu = self.scene()._app().MainWindow.menus["edit"]
-        example_action = QAction("Examples...")
+        example_action = QAction(_("Examples..."))
         example_action.triggered.connect(self.view_examples)
         self.right_click_menu.addAction(example_action)
         self.right_click_menu.exec(pos)

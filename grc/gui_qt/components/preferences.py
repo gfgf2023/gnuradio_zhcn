@@ -27,7 +27,7 @@ class PreferencesDialog(QDialog):
         self.setMinimumSize(600, 400)
         self.setModal(True)
 
-        self.setWindowTitle("GRC Preferences")
+        self.setWindowTitle(_("GRC Preferences"))
         self.tab_widget = QTabWidget()
 
         self.rt_prefs = QSettings(gr.userconf_path() + "/config.conf", QSettings.Format.IniFormat)
@@ -64,12 +64,12 @@ class PreferencesDialog(QDialog):
     def populate_tabs(self) -> None:
         for cat in self.pref_dict['categories']:
             tab = cat['tab'] = self.new_tab_widget()
-            self.tab_widget.addTab(tab, cat['name'])
+            self.tab_widget.addTab(tab, _(cat['name']))
 
             for item in cat['items']:
                 full_key = cat['key'] + '/' + item['key']
 
-                item['_label'] = QLabel(item['name'])
+                item['_label'] = QLabel(_(item['name']))
 
                 if item['dtype'] == 'bool':
                     item['_edit'] = QCheckBox()
@@ -84,7 +84,7 @@ class PreferencesDialog(QDialog):
                 elif item['dtype'] == 'enum':
                     item['_edit'] = QComboBox()
                     for opt in item['option_labels']:
-                        item['_edit'].addItem(opt)
+                        item['_edit'].addItem(_(opt))
                     index = item['options'].index(self.qsettings.value(full_key, item['default'], type=str))
                     item['_edit'].setCurrentIndex(index)
                 else:
@@ -97,8 +97,8 @@ class PreferencesDialog(QDialog):
                 item['_line'] = QHBoxLayout()
 
                 if 'tooltip' in item.keys():
-                    item['_label'].setToolTip(item['tooltip'])
-                    item['_edit'].setToolTip(item['tooltip'])
+                    item['_label'].setToolTip(_(item['tooltip']))
+                    item['_edit'].setToolTip(_(item['tooltip']))
 
                 tab.form.addRow(item['_label'], item['_edit'])
 
@@ -107,7 +107,7 @@ class PreferencesDialog(QDialog):
             for item in rt_cat['items']:
                 full_key = rt_cat['key'] + '/' + item['key']
 
-                item['_label'] = QLabel(item['name'])
+                item['_label'] = QLabel(_(item['name']))
 
                 if item['dtype'] == 'bool':
                     item['_edit'] = QCheckBox()
@@ -122,7 +122,7 @@ class PreferencesDialog(QDialog):
                 elif item['dtype'] == 'enum':
                     item['_edit'] = QComboBox()
                     for opt in item['option_labels']:
-                        item['_edit'].addItem(opt)
+                        item['_edit'].addItem(_(opt))
                     index = item['options'].index(self.rt_prefs.value(full_key, item['default'], type=str))
                     item['_edit'].setCurrentIndex(index)
                 else:
@@ -135,12 +135,12 @@ class PreferencesDialog(QDialog):
                 item['_line'] = QHBoxLayout()
 
                 if 'tooltip' in item.keys():
-                    item['_label'].setToolTip(item['tooltip'])
-                    item['_edit'].setToolTip(item['tooltip'])
+                    item['_label'].setToolTip(_(item['tooltip']))
+                    item['_edit'].setToolTip(_(item['tooltip']))
 
                 rt_tab.form.addRow(item['_label'], item['_edit'])
 
-        self.tab_widget.addTab(rt_tab, 'Runtime')
+        self.tab_widget.addTab(rt_tab, _('Runtime'))
 
     def save_all(self):
         log.debug(f'Writing changes to {self.qsettings.fileName()}')

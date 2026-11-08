@@ -441,9 +441,15 @@ class PythonGeneratorBase(CoreGeneratorBase):
     def get_exec_args(self):
         """Return the arguments for the executor."""
         run_command = self._flow_graph.get_option('run_command')
-        run_command = run_command.format(python=shlex.quote(sys.executable),
-                                         filename=shlex.quote(self.file_path))
-        run_command_args = shlex.split(run_command)
+        if sys.platform == 'win32':
+            py_exe = f'"{sys.executable}"' if ' ' in sys.executable else sys.executable
+            target_file = f'"{self.file_path}"' if ' ' in self.file_path else self.file_path
+            run_command = run_command.format(python=py_exe, filename=target_file)
+            run_command_args = shlex.split(run_command, posix=False)
+        else:
+            run_command = run_command.format(python=shlex.quote(sys.executable),
+                                             filename=shlex.quote(self.file_path))
+            run_command_args = shlex.split(run_command)
 
         if self.add_xterm:
             run_command_args = add_xterm_to_run_command(

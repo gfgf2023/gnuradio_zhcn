@@ -18,7 +18,7 @@ class ErrorsDialog(QDialog):
         self.store = []
         self.setModal(True)
         self.resize(700, MIN_DIALOG_HEIGHT)
-        self.setWindowTitle("Errors and Warnings")
+        self.setWindowTitle(_("Errors and Warnings"))
         buttons = QDialogButtonBox.StandardButton.Close
         self.buttonBox = QDialogButtonBox(buttons)
         self.buttonBox.rejected.connect(self.reject)  # close
@@ -35,20 +35,20 @@ class ErrorsDialog(QDialog):
     def update(self):
         # TODO: Make sure the columns are wide enough
         self.model.clear()
-        self.model.setHorizontalHeaderLabels(['Source', 'Aspect', 'Message'])
+        self.model.setHorizontalHeaderLabels([_("Source"), _("Aspect"), _("Message")])
         for element, message in self.flowgraph.iter_error_messages():
             if element.is_block:
                 src, aspect = QStandardItem(element.name), QStandardItem('')
             elif element.is_connection:
                 src = QStandardItem(element.source_block.name)
-                aspect = QStandardItem("Connection to '{}'".format(element.sink_block.name))
+                aspect = QStandardItem(_("Connection to '{}'").format(element.sink_block.name))
             elif element.is_port:
                 src = QStandardItem(element.parent_block.name)
                 aspect = QStandardItem("{} '{}'".format(
-                    'Sink' if element.is_sink else 'Source', element.name))
+                    _('Sink') if element.is_sink else _('Source'), element.name))
             elif element.is_param:
                 src = QStandardItem(element.parent_block.name)
-                aspect = QStandardItem("Param '{}'".format(element.name))
+                aspect = QStandardItem(_("Param '{}'").format(element.name))
             else:
                 src = aspect = QStandardItem('')
             self.model.appendRow([src, aspect, QStandardItem(message)])
@@ -63,7 +63,7 @@ class PropsDialog(QDialog):
         self.setModal(True)
         self.force_show_id = force_show_id
 
-        self.setWindowTitle(f"Properties: {self._block.label}")
+        self.setWindowTitle(_("Properties: {label}").format(label=_(self._block.label)))
 
         categories = (p.category for p in self._block.params.values())
 
@@ -87,7 +87,7 @@ class PropsDialog(QDialog):
             tab.setLayout(qvb)
             scrollarea = QScrollArea()
             scrollarea.setWidget(tab)
-            self.tabs.addTab(scrollarea, cat)
+            self.tabs.addTab(scrollarea, _(cat))
 
         self.scroll_error = QScrollArea()
 
@@ -133,11 +133,11 @@ class PropsDialog(QDialog):
                 dtype_label = None
                 if param.dtype not in self.ignore_dtype_labels:
                     dtype_label = QLabel(f"[{param.dtype}]")
-                qvb.addWidget(QLabel(param.name), i, 0)
+                qvb.addWidget(QLabel(_(param.name)), i, 0)
                 if param.dtype == "enum" or param.options:
                     dropdown = QComboBox()
                     for opt in param.options.values():
-                        dropdown.addItem(opt)
+                        dropdown.addItem(_(opt))
                     dropdown.param_values = list(param.options)
                     dropdown.param = param
                     qvb.addWidget(dropdown, i, 1)

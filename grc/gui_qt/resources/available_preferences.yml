@@ -5,6 +5,13 @@ categories:
   - key: grc
     name: GRC
     items:
+      - key: language
+        name: Language
+        tooltip: Interface language (restart required)
+        dtype: enum
+        options: ['auto', 'zh_CN', 'en_US']
+        option_labels: ['Auto', 'Simplified Chinese (zh_CN)', 'English (en_US)']
+        default: auto
       - key: editor
         name: Editor
         tooltip: Choose the editor

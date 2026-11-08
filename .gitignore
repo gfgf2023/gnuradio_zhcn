@@ -3,3 +3,8 @@
 *.pyo
 build*/
 .venv/*
+.pytest_cache/
+dist/
+test_dist/
+default.py
+udp.py

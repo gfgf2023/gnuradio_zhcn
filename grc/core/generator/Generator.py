@@ -26,12 +26,10 @@ class Generator:
         try:
             generator_module = importlib.import_module(self.generator_module)
         except ModuleNotFoundError:
-            # If we're running 'make test', then this will probably fail because
-            # the core workflows define the full path of the generator module
-            # (e.g., 'gnuradio.grc.core.workflows.python_nogui'), but there is
-            # no such module in the test environment. If this is the case, we
-            # strip the 'gnuradio.' prefix and try to import the module again.
-            if 'PYTEST_CURRENT_TEST' in os.environ and self.generator_module.startswith('gnuradio.'):
+            # If running 'make test' or running directly from the source repository,
+            # gnuradio.grc might not be installed in site-packages.
+            # In this case, strip the 'gnuradio.' prefix and import from the local grc package.
+            if self.generator_module.startswith('gnuradio.'):
                 generator_module = importlib.import_module(self.generator_module[9:])
             else:
                 raise

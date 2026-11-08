@@ -728,7 +728,7 @@ class MainWindow(QMainWindow, base.Component):
         # Global menu options
         self.menuBar().setNativeMenuBar(True)
 
-        open_recent = Menu("Open recent file")
+        open_recent = Menu(_("Open recent file"))
         menus["open_recent"] = open_recent
 
         act_recent_len = len(self.recent_files)
@@ -750,7 +750,7 @@ class MainWindow(QMainWindow, base.Component):
                     action.setVisible(False)
 
         # Setup the file menu
-        file = Menu("&File")
+        file = Menu(_("&File"))
         file.addAction(actions["new"])
         file.addAction(actions["open"])
         file.addMenu(open_recent)
@@ -770,7 +770,7 @@ class MainWindow(QMainWindow, base.Component):
         menus["file"] = file
 
         # Setup the edit menu
-        edit = Menu("&Edit")
+        edit = Menu(_("&Edit"))
         edit.addAction(actions["undo"])
         edit.addAction(actions["redo"])
         edit.addAction(actions["view_undo_stack"])
@@ -787,7 +787,7 @@ class MainWindow(QMainWindow, base.Component):
         edit.addAction(actions["rotate_ccw"])
         edit.addAction(actions["rotate_cw"])
 
-        align = Menu("&Align")
+        align = Menu(_("&Align"))
         menus["align"] = align
         align.addAction(actions["vertical_align_top"])
         align.addAction(actions["vertical_align_middle"])
@@ -804,7 +804,7 @@ class MainWindow(QMainWindow, base.Component):
         edit.addAction(actions["bypass"])
         edit.addSeparator()
 
-        more = Menu("&More")
+        more = Menu(_("&More"))
         menus["more"] = more
         more.addAction(actions["create_hier"])
         more.addAction(actions["open_hier"])
@@ -816,16 +816,16 @@ class MainWindow(QMainWindow, base.Component):
         menus["edit"] = edit
 
         # Setup submenu
-        panels = Menu("&Panels")
+        panels = Menu(_("&Panels"))
         menus["panels"] = panels
         panels.setEnabled(False)
 
-        toolbars = Menu("&Toolbars")
+        toolbars = Menu(_("&Toolbars"))
         menus["toolbars"] = toolbars
         toolbars.setEnabled(False)
 
         # Setup the view menu
-        view = Menu("&View")
+        view = Menu(_("&View"))
         view.addMenu(panels)
         view.addMenu(toolbars)
         view.addSeparator()
@@ -838,7 +838,7 @@ class MainWindow(QMainWindow, base.Component):
         menus["view"] = view
 
         # Setup the build menu
-        build = Menu("&Build")
+        build = Menu(_("&Build"))
         build.addAction(actions["errors"])
         build.addAction(actions["generate"])
         build.addAction(actions["execute"])
@@ -846,7 +846,7 @@ class MainWindow(QMainWindow, base.Component):
         menus["build"] = build
 
         # Setup the tools menu
-        tools = Menu("&Tools")
+        tools = Menu(_("&Tools"))
         tools.addAction(actions["filter_design_tool"])
         tools.addAction(actions["module_browser"])
         tools.addSeparator()
@@ -855,7 +855,7 @@ class MainWindow(QMainWindow, base.Component):
         menus["tools"] = tools
 
         # Setup the help menu
-        help = Menu("&Help")
+        help = Menu(_("&Help"))
         help.addAction(actions["help"])
         help.addAction(actions["guided_tutorials"])
         help.addAction(actions["types"])
@@ -870,7 +870,7 @@ class MainWindow(QMainWindow, base.Component):
         log.debug("Creating toolbars")
 
         # Main toolbar
-        file = Toolbar("File")
+        file = Toolbar(_("File"))
         file.setObjectName("_FileTb")
         file.addAction(actions["new"])
         file.addAction(actions["open"])
@@ -879,7 +879,7 @@ class MainWindow(QMainWindow, base.Component):
         toolbars["file"] = file
 
         # Edit toolbar
-        edit = Toolbar("Edit")
+        edit = Toolbar(_("Edit"))
         edit.setObjectName("_EditTb")
         edit.addAction(actions["undo"])
         edit.addAction(actions["redo"])
@@ -891,7 +891,7 @@ class MainWindow(QMainWindow, base.Component):
         toolbars["edit"] = edit
 
         # Run Toolbar
-        run = Toolbar("Run")
+        run = Toolbar(_("Run"))
         run.setObjectName("_RunTb")
         run.addAction(actions["errors"])
         run.addAction(actions["generate"])
@@ -900,7 +900,7 @@ class MainWindow(QMainWindow, base.Component):
         toolbars["run"] = run
 
         # Misc Toolbar
-        misc = Toolbar("Misc")
+        misc = Toolbar(_("Misc"))
         misc.setObjectName("_MiscTb")
         misc.addAction(actions["reload"])
         toolbars["misc"] = misc
@@ -919,7 +919,7 @@ class MainWindow(QMainWindow, base.Component):
             self,  # parent
             self.actions["open"].statusTip(),  # caption
             dirname,  # dir
-            filter="Flow Graph Files (*.grc);;All files (*.*)",
+            filter=_("Flow Graph Files (*.grc);;All files (*.*)"),
         )
         return filename
 
@@ -928,7 +928,7 @@ class MainWindow(QMainWindow, base.Component):
         filename, filtr = Save(
             self,
             self.actions["save"].statusTip(),
-            filter="Flow Graph Files (*.grc);;All files (*.*)",
+            filter=_("Flow Graph Files (*.grc);;All files (*.*)"),
         )
         return filename
 
@@ -1456,12 +1456,31 @@ class MainWindow(QMainWindow, base.Component):
         else:
             output_dir = os.path.dirname(filename)
 
-        generator = self.platform.Generator(
-            self.currentFlowgraph, output_dir
-        )
-        generator.write(called_from_exec)
-        self.currentView.generator = generator
-        log.info(f"Generated {generator.file_path}")
+        try:
+            generator = self.platform.Generator(
+                self.currentFlowgraph, output_dir
+            )
+            generator.write(called_from_exec)
+            self.currentView.generator = generator
+            log.info(f"Generated {generator.file_path}")
+
+            from ...core import Messages
+            Messages.send(f"\n[+] {_('Generated')}: {generator.file_path}\n")
+
+            if hasattr(self, 'statusBar') and self.statusBar():
+                self.statusBar().showMessage(_("Generated: ") + generator.file_path, 5000)
+
+            if not called_from_exec:
+                from PyQt6.QtWidgets import QMessageBox
+                QMessageBox.information(
+                    self,
+                    _("process-generate"),
+                    f"{_('Code generated successfully!')}\n\n{generator.file_path}"
+                )
+        except Exception as e:
+            log.exception(f"Generate failed: {e}")
+            from PyQt6.QtWidgets import QMessageBox
+            QMessageBox.critical(self, _("Generate Error"), f"{_('Failed to generate code')}:\n{str(e)}")
 
     def execute_triggered(self):
         log.debug("execute")
@@ -1469,19 +1488,24 @@ class MainWindow(QMainWindow, base.Component):
             self.generate_triggered(called_from_exec=True)
             if self.currentView.generator:
                 xterm = self.app.qsettings.value("grc/xterm_executable", "")
-                '''if self.config.xterm_missing() != xterm:
-                    if not os.path.exists(xterm):
-                        Dialogs.show_missing_xterm(main, xterm)
-                    self.config.xterm_missing(xterm)'''
+                if not self.currentFlowgraphScene.saved and self.currentFlowgraphScene.filename:
+                    try:
+                        self.platform.save_flow_graph(self.currentFlowgraphScene.filename, self.currentFlowgraph)
+                        self.currentFlowgraphScene.set_saved(True)
+                    except Exception:
+                        pass
                 if self.currentFlowgraphScene.saved and self.currentFlowgraphScene.filename:
-                    # Save config before execution
-                    # self.config.save()
-                    ExecFlowGraphThread(
-                        view=self.currentView,
-                        flowgraph=self.currentFlowgraph,
-                        xterm_executable=xterm,
-                        update_gui_callback=self.updateActions
-                    )
+                    try:
+                        from ...core import Messages
+                        Messages.send(f"\n[*] 启动流图子进程: {self.currentView.generator.file_path}...\n")
+                        ExecFlowGraphThread(
+                            view=self.currentView,
+                            flowgraph=self.currentFlowgraph,
+                            xterm_executable=xterm,
+                            update_gui_callback=self.updateActions
+                        )
+                    except Exception as e:
+                        log.exception(f"Execute failed: {e}")
 
     def kill_triggered(self):
         log.debug("kill")

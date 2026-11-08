@@ -166,6 +166,25 @@ install(
 )
 
 ########################################################################
+# Compile translation catalogs (.po -> .mo)
+########################################################################
+file(GLOB_RECURSE po_files "${CMAKE_CURRENT_SOURCE_DIR}/gui_qt/resources/language/*.po")
+set(mo_targets)
+foreach(po_file ${po_files})
+    string(REGEX REPLACE "\\.po$" ".mo" mo_file ${po_file})
+    add_custom_command(
+        OUTPUT ${mo_file}
+        COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tools/compile_po.py ${po_file} ${mo_file}
+        DEPENDS ${po_file} ${CMAKE_SOURCE_DIR}/tools/compile_po.py
+        COMMENT "Compiling translation catalog ${po_file} -> ${mo_file}"
+    )
+    list(APPEND mo_targets ${mo_file})
+endforeach()
+if(mo_targets)
+    add_custom_target(gnuradio-grc-translations ALL DEPENDS ${mo_targets})
+endif()
+
+########################################################################
 # Install (+ compile) python sources and data files
 ########################################################################
 file(GLOB py_files "*.py")

@@ -1,0 +1,218 @@
+name: Build & Release Full-Featured Packages
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Release Tag Name (e.g., v3.11.0.0-zhcn)'
+        required: false
+        default: 'v3.11.0.0-zhcn'
+      prerelease:
+        description: 'Publish as Pre-release'
+        type: boolean
+        default: false
+      draft:
+        description: 'Create as Draft Release'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    name: Build Windows x64 Portable
+    runs-on: windows-2022
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Build Dependencies & Test Translations
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pyyaml mako
+          python tools/compile_po.py
+          python -m pytest grc/tests/test_translation_zhcn.py
+
+      - name: Setup Micromamba Runtime
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-file: packaging/environment-win64.yml
+          environment-name: gnuradio_runtime
+          cache-environment: true
+          cache-downloads: true
+          post-cleanup: 'all'
+
+      - name: Assemble Windows Full-Featured Portable Package
+        run: |
+          $TAG = if ("${{ github.ref_type }}" -eq "tag") { "${{ github.ref_name }}" } else { "${{ github.event.inputs.tag_name }}" }
+          if (-not $TAG) { $TAG = "v3.11.0.0-zhcn" }
+          $VERSION = $TAG.TrimStart('v')
+
+          $ENV_INFO = micromamba info --json | ConvertFrom-Json
+          $RUNTIME_PREFIX = $ENV_INFO.env_prefix
+          Write-Host "[*] Micromamba Runtime Prefix: $RUNTIME_PREFIX"
+
+          python tools/package_release.py --os windows --runtime "$RUNTIME_PREFIX" --output dist --version "$VERSION"
+          Get-ChildItem -Path dist
+
+      - name: Upload Windows Package Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-portable-package
+          path: dist/*
+          retention-days: 7
+
+  build-linux:
+    name: Build Linux x86_64 Portable
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -el {0}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Build Dependencies & Test Translations
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install pytest pyyaml mako
+          python3 tools/compile_po.py
+          python3 -m pytest grc/tests/test_translation_zhcn.py
+
+      - name: Setup Micromamba Runtime
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-file: packaging/environment-linux64.yml
+          environment-name: gnuradio_runtime
+          cache-environment: true
+          cache-downloads: true
+          post-cleanup: 'all'
+
+      - name: Assemble Linux Full-Featured Portable Package
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          if [ "${GITHUB_REF_TYPE}" != "tag" ]; then
+            TAG="${{ github.event.inputs.tag_name }}"
+          fi
+          [ -z "$TAG" ] && TAG="v3.11.0.0-zhcn"
+          VERSION="${TAG#v}"
+
+          RUNTIME_PREFIX="$(micromamba info --json | jq -r '.env_prefix')"
+          echo "[*] Micromamba Runtime Prefix: $RUNTIME_PREFIX"
+
+          python3 tools/package_release.py --os linux --runtime "$RUNTIME_PREFIX" --output dist --version "$VERSION"
+          ls -la dist/
+
+      - name: Upload Linux Package Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-portable-package
+          path: dist/*
+          retention-days: 7
+
+  create-release:
+    name: Publish GitHub Release
+    needs: [build-windows, build-linux]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: '*-portable-package'
+          merge-multiple: true
+          path: release-assets
+
+      - name: Consolidate SHA256 Checksums
+        run: |
+          cd release-assets
+          if [ -f SHA256SUMS.txt ]; then
+            sort -u SHA256SUMS.txt -o SHA256SUMS.txt
+            echo "=== SHA256SUMS.txt ==="
+            cat SHA256SUMS.txt
+          fi
+          ls -lh
+
+      - name: Compute Release Tag
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          if [ "${GITHUB_REF_TYPE}" != "tag" ]; then
+            TAG="${{ github.event.inputs.tag_name }}"
+          fi
+          [ -z "$TAG" ] && TAG="v3.11.0.0-zhcn"
+          echo "RELEASE_TAG=$TAG" >> $GITHUB_ENV
+          echo "[+] Final Release Tag: $TAG"
+
+      - name: Publish to GitHub Releases
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.RELEASE_TAG }}
+          name: GNU Radio 伴侣 (GRC) 简体中文增强版 ${{ env.RELEASE_TAG }}
+          draft: ${{ github.event.inputs.draft || false }}
+          prerelease: ${{ github.event.inputs.prerelease || false }}
+          generate_release_notes: false
+          body: |
+            ## 📻 GNU Radio 伴侣 (GRC) 简体中文增强发行版
+
+            欢迎使用 GNU Radio 中文增强版！本版本针对广大国内软件无线电 (SDR) 工程师、科研人员、高校师生及无线电爱好者进行了深度的简体中文本地化与易用性增强。
+
+            ### 🌟 本版本核心特性 (Release Highlights)
+            1. **核心 DSP 模块 100% 汉化**：
+               - 完整汉化官方全部 **575 个核心 DSP 模块**，覆盖音频处理、数字滤波、快速傅里叶变换、模拟/数字调制解调、OFDM 正交频分复用、差错控制与纠错编码 (FEC)、信道模型、时域采样、PDU、消息总线等 **20 个核心大类**。
+               - 属性对话框关键字段、常用参数单位与模式选项深度中文化。
+            2. **现代化 PyQt6 深色暗黑主题 (Dark Mode)**：
+               - 基于全新 PyQt6 框架构建，默认集成原生深色主题，长时间信号流图设计护眼舒适。
+            3. **中英双语智能搜索 (Dual-Language Search)**：
+               - 左侧模块库支持【中文名】、【拼音全拼/首字母】及【原英文 ID】实时模糊匹配，大幅降低模块查找门槛。
+            4. **全功能绿色便携版 (Zero-Configuration Portable)**：
+               - 免去繁琐的 CMake / MSVC / GCC 编译配置，真正实现解压即用！
+               - 内置 Python 3.11、GNU Radio C++ 核心库与 VOLK 矢量加速指令集。
+               - 内置 SoapySDR 与 UHD 硬件支持，即插即用支持 RTL-SDR、HackRF One、PlutoSDR、USRP、Airspy 等主流 SDR 设备。
+            5. **人性化一键启动与诊断**：
+               - 附带《一键启动-GNU Radio中文版.bat》与《创建桌面快捷方式.vbs》。
+               - 附带《启动-SDR命令行终端.bat》，可直接运行 `SoapySDRUtil --find`、`uhd_find_devices`、`volk_profile` 等硬件调试命令。
+               - 内置代码生成与执行实时反馈，智能诊断常见流图参数错误。
+
+            ---
+
+            ### 📦 资产下载与校验 (Downloads & Verification)
+            | 文件名 | 平台 / 类型 | 说明 |
+            | :--- | :--- | :--- |
+            | `gnuradio-v*-windows-x64-portable-zhCN.zip` | Windows 10/11 x64 | **Windows 绿色免安装版**（解压双击一键启动） |
+            | `gnuradio-v*-linux-x86_64-portable-zhCN.tar.gz` | Linux x86_64 | **Linux 便携版**（解压运行 `./run_grc_zhcn.sh`） |
+            | `SHA256SUMS.txt` | 全平台 | SHA256 完整性哈希校验清单 |
+
+            ---
+
+            ### 🛠️ 快速上手与驱动配置
+            - **Windows**: 解压 `.zip` 压缩包后，双击运行 `一键启动-GNU Radio中文版.bat`。详细 RTL-SDR / HackRF 的 Zadig 驱动配置指南请查阅压缩包内的 `使用说明与硬件驱动配置.txt`。
+            - **Linux**: 解压后在终端运行 `./run_grc_zhcn.sh`。免 root USB 硬件权限配置请查阅 `README_Linux.txt`。
+
+            ---
+            *项目开源地址: [gfgf2023/gnuradio_zhcn](https://github.com/gfgf2023/gnuradio_zhcn)*
+          files: |
+            release-assets/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
