@@ -153,13 +153,30 @@ def run_qt(args, log):
     log.debug("Using locale - %s" % str(languages))
 
     # Still run even if the english translation isn't found
-    language = gettext.translation(settings.APP_NAME, settings.path.LANGUAGE, languages=languages,
-                                   fallback=True)
+    locale_candidates = [
+        settings.path.LANGUAGE,
+        os.path.abspath(os.path.join(os.path.dirname(__file__), 'gui_qt', 'resources', 'language')),
+        os.path.join(sys.prefix, 'share', 'locale'),
+    ]
+    language = gettext.NullTranslations()
+    for ldir in locale_candidates:
+        if os.path.isdir(ldir):
+            lang_obj = gettext.translation(settings.APP_NAME, ldir, languages=languages, fallback=True)
+            if type(lang_obj) != gettext.NullTranslations:
+                language = lang_obj
+                break
+    if type(language) == gettext.NullTranslations and 'zh_CN' not in languages:
+        for ldir in locale_candidates:
+            if os.path.isdir(ldir):
+                lang_obj = gettext.translation(settings.APP_NAME, ldir, languages=['zh_CN'] + languages, fallback=True)
+                if type(lang_obj) != gettext.NullTranslations:
+                    language = lang_obj
+                    break
     if type(language) == gettext.NullTranslations:
         log.error("Unable to find any translation")
         log.error("Default English translation missing")
     else:
-        log.info("Using translation - %s" % language.info()["language"])
+        log.info("Using translation - %s" % language.info().get("language", "zh_CN"))
     # Still need to install null translation to let the system handle calls to _()
     language.install()
 

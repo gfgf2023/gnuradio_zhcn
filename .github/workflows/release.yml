@@ -53,6 +53,8 @@ jobs:
         with:
           environment-file: packaging/environment-win64.yml
           environment-name: gnuradio_runtime
+          init-shell: powershell
+          root-prefix: C:\micromamba
           cache-environment: true
           cache-downloads: true
           post-cleanup: 'all'
@@ -63,14 +65,26 @@ jobs:
           if (-not $TAG) { $TAG = "v3.11.0.0-zhcn" }
           $VERSION = $TAG.TrimStart('v')
 
-          $RUNTIME_PREFIX = $env:CONDA_PREFIX
-          if (-not $RUNTIME_PREFIX -or -not (Test-Path $RUNTIME_PREFIX)) {
-              $ENV_INFO = micromamba info --json | ConvertFrom-Json
-              $RUNTIME_PREFIX = $ENV_INFO.env_prefix
+          $CANDIDATES = @(
+              $env:CONDA_PREFIX,
+              "C:\micromamba\envs\gnuradio_runtime",
+              "$env:MAMBA_ROOT_PREFIX\envs\gnuradio_runtime",
+              "$env:USERPROFILE\micromamba\envs\gnuradio_runtime"
+          )
+          $RUNTIME_PREFIX = ""
+          foreach ($c in $CANDIDATES) {
+              if ($c -and (Test-Path "$c\python.exe")) {
+                  $RUNTIME_PREFIX = $c
+                  break
+              }
+          }
+          if (-not $RUNTIME_PREFIX) {
+              Write-Error "Could not locate gnuradio_runtime environment!"
+              exit 1
           }
           Write-Host "[*] Micromamba Runtime Prefix: $RUNTIME_PREFIX"
 
-          python tools/package_release.py --os windows --runtime "$RUNTIME_PREFIX" --output dist --version "$VERSION"
+          python tools/package_release.py --os windows --runtime "$RUNTIME_PREFIX" --output dist --version "$VERSION" --require-runtime
           Get-ChildItem -Path dist
 
       - name: Upload Windows Package Artifact
@@ -126,7 +140,7 @@ jobs:
           RUNTIME_PREFIX="${CONDA_PREFIX:-$(micromamba info --json | jq -r '.env_prefix')}"
           echo "[*] Micromamba Runtime Prefix: $RUNTIME_PREFIX"
 
-          python3 tools/package_release.py --os linux --runtime "$RUNTIME_PREFIX" --output dist --version "$VERSION"
+          python3 tools/package_release.py --os linux --runtime "$RUNTIME_PREFIX" --output dist --version "$VERSION" --require-runtime
           ls -la dist/
 
       - name: Upload Linux Package Artifact

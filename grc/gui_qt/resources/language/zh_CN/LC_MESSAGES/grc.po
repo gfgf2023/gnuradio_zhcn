@@ -3004,3 +3004,146 @@ msgstr "压控振荡器灵敏度"
 msgid "Vector Length"
 msgstr "向量长度"
 
+
+# =============================================================================
+# 9. Radioconda 常用 OOT 扩展模块及 PlutoSDR/OsmoSDR 深度汉化
+# =============================================================================
+
+msgid "ADS-B"
+msgstr "ADS-B 航空广播监控"
+
+msgid "ADS-B Decoder"
+msgstr "ADS-B 报文译码器 (Decoder)"
+
+msgid "ADS-B Demod"
+msgstr "ADS-B 脉冲解调器 (Demod)"
+
+msgid "ADS-B Framer"
+msgstr "ADS-B 前导码同步成帧器 (Framer)"
+
+msgid "Advanced File"
+msgstr "高级文件操作 (Advanced File)"
+
+msgid "DECT2"
+msgstr "DECT2 数字无绳电话通信"
+
+msgid "Digital RF"
+msgstr "Digital RF 射频数据存储"
+
+msgid "Foo"
+msgstr "Foo 无线数据帧扩展工具"
+
+msgid "GPredict"
+msgstr "GPredict 卫星轨道多普勒跟踪"
+
+msgid "IEEE802.11"
+msgstr "IEEE 802.11 (Wi-Fi 无线局域网)"
+
+msgid "IEEE802.15.4"
+msgstr "IEEE 802.15.4 (ZigBee 物联网)"
+
+msgid "Inspector"
+msgstr "Inspector 信号智能盲分析套件"
+
+msgid "Iridium"
+msgstr "Iridium 铱星通信协议"
+
+msgid "LEO"
+msgstr "LEO 低轨卫星信道衰减仿真"
+
+msgid "LoRa_RX"
+msgstr "LoRa 远距离扩频接收 (LoRa_RX)"
+
+msgid "LoRa_TX"
+msgstr "LoRa 远距离扩频发射 (LoRa_TX)"
+
+msgid "OsmoSDR"
+msgstr "OsmoSDR 通用开源射频驱动"
+
+msgid "osmocom Source"
+msgstr "OsmoSDR 硬件接收源 (osmocom Source)"
+
+msgid "osmocom Sink"
+msgstr "OsmoSDR 硬件发射端 (osmocom Sink)"
+
+msgid "RTL-SDR Source"
+msgstr "RTL-SDR 电视棒接收源"
+
+msgid "Paint"
+msgstr "Paint 频谱瀑布图画板发射器"
+
+msgid "RADAR"
+msgstr "RADAR 雷达信号处理工具箱"
+
+msgid "RDS"
+msgstr "RDS 调频广播数据系统"
+
+msgid "Satellites"
+msgstr "Satellites 业余卫星遥测解调套件"
+
+# PlutoSDR / IIO / 硬件参数汉化
+msgid "IIO context URI"
+msgstr "IIO 设备上下文地址 (URI)"
+
+msgid "LO Frequency"
+msgstr "本振中心频率 (LO Freq)"
+
+msgid "Buffer size"
+msgstr "缓冲区大小 (Buffer Size)"
+
+msgid "Cyclic"
+msgstr "循环连续发射 (Cyclic)"
+
+msgid "Attenuation TX1 (dB)"
+msgstr "TX1 发射衰减 (dB)"
+
+msgid "Attenuation TX2 (dB)"
+msgstr "TX2 发射衰减 (dB)"
+
+msgid "Filter Configuration"
+msgstr "滤波器配置模式"
+
+msgid "RF Bandwidth (Hz)"
+msgstr "射频模拟带宽 (Hz)"
+
+msgid "Packet Length Tag"
+msgstr "包长流标签名"
+
+msgid "Quadrature"
+msgstr "正交校准 (Quadrature)"
+
+msgid "RF DC Correction"
+msgstr "射频直流偏置校准 (RF DC)"
+
+msgid "BB DC Correction"
+msgstr "基带直流偏置校准 (BB DC)"
+
+msgid "Gain Mode (RX1)"
+msgstr "RX1 增益控制模式"
+
+msgid "Gain Mode (RX2)"
+msgstr "RX2 增益控制模式"
+
+msgid "Manual Gain (RX1)(dB)"
+msgstr "RX1 手动增益 (dB)"
+
+msgid "Manual Gain (RX2)(dB)"
+msgstr "RX2 手动增益 (dB)"
+
+msgid "Fpass (Hz)"
+msgstr "通带截止频率 Fpass (Hz)"
+
+msgid "Fstop (Hz)"
+msgstr "阻带截止频率 Fstop (Hz)"
+
+msgid "Slow Attack"
+msgstr "慢速自动增益 (Slow Attack)"
+
+msgid "Fast Attack"
+msgstr "快速自动增益 (Fast Attack)"
+
+msgid "Hybrid"
+msgstr "混合自动增益 (Hybrid)"
+
+msgid "Design"
+msgstr "自定义设计 (Design)"
