@@ -146,6 +146,7 @@ def test_format_placeholders_consistency(locale_setup):
 
 def test_code_generation_module_resolution():
     """测试汉化环境下核心代码生成器模块的解析，确保不崩溃"""
+    pytest.importorskip("numpy")
     from grc.core.generator.Generator import Generator
     import grc.workflows.python_qt_gui
 

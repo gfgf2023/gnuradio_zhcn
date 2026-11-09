@@ -42,7 +42,7 @@ jobs:
       - name: Install Build Dependencies & Test Translations
         run: |
           python -m pip install --upgrade pip
-          pip install pytest pyyaml mako
+          pip install pytest pyyaml mako numpy
           python tools/compile_po.py grc/gui_qt/resources/language/zh_CN/LC_MESSAGES/grc.po
           python -m pytest grc/tests/test_translation_zhcn.py
 
@@ -61,8 +61,11 @@ jobs:
           if (-not $TAG) { $TAG = "v3.11.0.0-zhcn" }
           $VERSION = $TAG.TrimStart('v')
 
-          $ENV_INFO = micromamba info --json | ConvertFrom-Json
-          $RUNTIME_PREFIX = $ENV_INFO.env_prefix
+          $RUNTIME_PREFIX = $env:CONDA_PREFIX
+          if (-not $RUNTIME_PREFIX -or -not (Test-Path $RUNTIME_PREFIX)) {
+              $ENV_INFO = micromamba info --json | ConvertFrom-Json
+              $RUNTIME_PREFIX = $ENV_INFO.env_prefix
+          }
           Write-Host "[*] Micromamba Runtime Prefix: $RUNTIME_PREFIX"
 
           python tools/package_release.py --os windows --runtime "$RUNTIME_PREFIX" --output dist --version "$VERSION"
@@ -94,7 +97,7 @@ jobs:
       - name: Install Build Dependencies & Test Translations
         run: |
           python3 -m pip install --upgrade pip
-          pip install pytest pyyaml mako
+          pip install pytest pyyaml mako numpy
           python3 tools/compile_po.py grc/gui_qt/resources/language/zh_CN/LC_MESSAGES/grc.po
           python3 -m pytest grc/tests/test_translation_zhcn.py
 
@@ -116,7 +119,7 @@ jobs:
           [ -z "$TAG" ] && TAG="v3.11.0.0-zhcn"
           VERSION="${TAG#v}"
 
-          RUNTIME_PREFIX="$(micromamba info --json | jq -r '.env_prefix')"
+          RUNTIME_PREFIX="${CONDA_PREFIX:-$(micromamba info --json | jq -r '.env_prefix')}"
           echo "[*] Micromamba Runtime Prefix: $RUNTIME_PREFIX"
 
           python3 tools/package_release.py --os linux --runtime "$RUNTIME_PREFIX" --output dist --version "$VERSION"
