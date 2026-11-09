@@ -78,11 +78,10 @@ class ExecFlowGraphThread(threading.Thread):
         """
         Wait on the executing process by reading from its stdout.
         """
-        # handle completion
-        r = "\n"
-        while r:
-            Messages.send_verbose_exec(r)
-            r = self.process.stdout.read(1)
+        for line in iter(self.process.stdout.readline, ''):
+            if not line:
+                break
+            Messages.send_verbose_exec(line)
 
         # Properly close pipe before thread is terminated
         self.process.stdout.close()
