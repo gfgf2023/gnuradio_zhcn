@@ -180,6 +180,11 @@ def package_release(target_os: str, runtime_path: Path, output_dir: Path, versio
     with open(sha_file, 'a', encoding='utf-8') as f:
         f.write(f"{sha256_val}  {archive_name}\n")
 
+    # 8. 清理临时装配目录以节省空间并加速 artifact 上传
+    if staging_dir.exists():
+        print(f"[*] 清理临时装配目录: {staging_dir}")
+        shutil.rmtree(staging_dir, ignore_errors=True)
+
     print("\n=======================================================")
     print("  打包完成！")
     print(f"  安装包文件: {archive_path}")
