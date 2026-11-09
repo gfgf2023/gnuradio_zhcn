@@ -43,7 +43,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pytest pyyaml mako
-          python tools/compile_po.py
+          python tools/compile_po.py grc/gui_qt/resources/language/zh_CN/LC_MESSAGES/grc.po
           python -m pytest grc/tests/test_translation_zhcn.py
 
       - name: Setup Micromamba Runtime
@@ -95,7 +95,7 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           pip install pytest pyyaml mako
-          python3 tools/compile_po.py
+          python3 tools/compile_po.py grc/gui_qt/resources/language/zh_CN/LC_MESSAGES/grc.po
           python3 -m pytest grc/tests/test_translation_zhcn.py
 
       - name: Setup Micromamba Runtime

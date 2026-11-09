@@ -172,9 +172,19 @@ def compile_po_to_mo(po_path, mo_path=None):
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print("Usage: compile_po.py <input.po> [output.mo]")
-        sys.exit(1)
+        # 默认寻找并编译 zh_CN 语言包
+        default_po = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+            'grc', 'gui_qt', 'resources', 'language', 'zh_CN', 'LC_MESSAGES', 'grc.po'
+        )
+        if os.path.isfile(default_po):
+            in_po = default_po
+            out_mo = None
+        else:
+            print("Usage: compile_po.py <input.po> [output.mo]")
+            sys.exit(1)
+    else:
+        in_po = sys.argv[1]
+        out_mo = sys.argv[2] if len(sys.argv) > 2 else None
 
-    in_po = sys.argv[1]
-    out_mo = sys.argv[2] if len(sys.argv) > 2 else None
     compile_po_to_mo(in_po, out_mo)
