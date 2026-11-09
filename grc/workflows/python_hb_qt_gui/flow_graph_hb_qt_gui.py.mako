@@ -21,8 +21,15 @@
 ########################################################
 ##Create Imports
 ########################################################
-from PyQt6 import QtWidgets
 from gnuradio import qtgui
+import sys
+if 'PyQt5' in sys.modules:
+    from PyQt5 import Qt, QtWidgets, QtGui, QtCore
+    import sip
+else:
+    from PyQt6 import QtWidgets, QtGui, QtCore
+    from PyQt6 import sip
+    Qt = QtWidgets
 % for imp in imports:
 ##${imp.replace("  # grc-generated hier_block", "")}
 ${imp}

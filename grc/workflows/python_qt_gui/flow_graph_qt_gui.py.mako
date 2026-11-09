@@ -22,10 +22,17 @@
 ########################################################
 ##Create Imports
 ########################################################
-from PyQt6 import QtWidgets
-from PyQt6 import QtGui
-from PyQt6 import QtCore
 from gnuradio import qtgui
+import sys
+if 'PyQt5' in sys.modules:
+    from PyQt5 import Qt, QtWidgets, QtGui, QtCore
+    import sip
+else:
+    from PyQt6 import QtWidgets, QtGui, QtCore
+    from PyQt6 import sip
+    Qt = QtWidgets
+    if not hasattr(QtWidgets.QFrame, 'NoFrame'):
+        QtWidgets.QFrame.NoFrame = QtWidgets.QFrame.Shape.NoFrame
 
 % for imp in imports:
 ##${imp.replace("  # grc-generated hier_block", "")}
@@ -93,7 +100,7 @@ class ${class_name}(gr.top_block, QtWidgets.QWidget):
         self.top_scroll_layout = QtWidgets.QVBoxLayout()
         self.setLayout(self.top_scroll_layout)
         self.top_scroll = QtWidgets.QScrollArea()
-        self.top_scroll.setFrameStyle(QtWidgets.QFrame.Shape.NoFrame)
+        self.top_scroll.setFrameStyle(getattr(QtWidgets.QFrame, 'NoFrame', QtWidgets.QFrame.Shape.NoFrame))
         self.top_scroll_layout.addWidget(self.top_scroll)
         self.top_scroll.setWidgetResizable(True)
         self.top_widget = QtWidgets.QWidget()

@@ -176,6 +176,8 @@ class PythonGeneratorBase(CoreGeneratorBase):
         for block in blocks:
             make = block.templates.render('make')
             if make:
+                # Adapt Qt6/Qt5 widget wrapping dynamically at runtime
+                make = make.replace('QtWidgets.QWidget', 'Qt.QWidget')
                 if not (block.is_variable or block.is_virtual_or_pad):
                     make = 'self.' + block.name + ' = ' + make
                 blocks_make.append((block, make))
@@ -381,6 +383,8 @@ class PythonGeneratorBase(CoreGeneratorBase):
                 continue
             for line in lines:
                 line = line.rstrip()
+                if line in ('from PyQt6 import sip', 'import sip', 'from PyQt6 import Qt', 'from PyQt5 import Qt'):
+                    continue
                 if not is_duplicate(line):
                     output.append(line)
 
