@@ -16,10 +16,10 @@ if errorlevel 1 goto ERR
 exit /b 0
 
 :RUN_PORTABLE
-set "PATH=%RUNTIME%;%RUNTIME%\Library\bin;%RUNTIME%\Library\usr\bin;%RUNTIME%\Library\mingw-w64\bin;%RUNTIME%\Scripts;%RUNTIME%\bin;%PATH%"
+set "PATH=%RUNTIME%\Lib\site-packages\PyQt6\Qt6\bin;%RUNTIME%;%RUNTIME%\Library\bin;%RUNTIME%\Library\usr\bin;%RUNTIME%\Library\mingw-w64\bin;%RUNTIME%\Scripts;%RUNTIME%\bin;%PATH%"
 set "PYTHONHOME=%RUNTIME%"
 set "PYTHONPATH=%ROOT%;%RUNTIME%\Lib\site-packages"
-set "GRC_BLOCKS_PATH=%RUNTIME%\Library\share\gnuradio\grc\blocks;%RUNTIME%\share\gnuradio\grc\blocks;%ROOT%grc\blocks"
+set "GRC_BLOCKS_PATH=%RUNTIME%\Library\share\gnuradio\grc\blocks;%RUNTIME%\share\gnuradio\grc\blocks"
 "%RUNTIME%\python.exe" "%ROOT%grc_zhcn.py" %*
 if errorlevel 1 goto ERR
 exit /b 0
@@ -27,6 +27,6 @@ exit /b 0
 :ERR
 echo.
 echo [Error] Launch failed. Please check Python and dependencies:
-echo   pip install PyQt6 pyyaml mako qdarkstyle numpy
+echo   pip install PyQt6==6.8.1 pyyaml mako qdarkstyle numpy
 pause
 exit /b 1

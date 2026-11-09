@@ -17,9 +17,9 @@ log = logging.getLogger(f"grc.application.{__name__}")
 
 
 class WorkerSignals(QObject):
-    error = pyqtSignal(tuple)
+    error = pyqtSignal(object)
     result = pyqtSignal(object)
-    progress = pyqtSignal(tuple)
+    progress = pyqtSignal(object)
 
 
 class Worker(QRunnable):
@@ -44,8 +44,10 @@ class Worker(QRunnable):
         except:
             print("Error in background task:")
             traceback.print_exc()
-        else:
+        try:
             self.signals.result.emit(result)
+        except (RuntimeError, AttributeError):
+            pass
 
 
 class ExampleBrowserDialog(QDialog):
@@ -269,7 +271,10 @@ class ExampleBrowser(QWidget, base.Component):
                     for dirpath, dirnames, filenames in os.walk(entry):
                         dirnames.sort()
                         current_subdir += 1
-                        progress_callback.emit((int(100 * current_subdir / subdirs), "Indexing examples"))
+                        try:
+                            progress_callback.emit((int(100 * current_subdir / subdirs), "Indexing examples"))
+                        except (RuntimeError, AttributeError):
+                            return examples_dict
                         for filename in sorted(filter(lambda f: f.endswith('.' + ext), filenames)):
                             file_path = os.path.join(dirpath, filename)
                             try:

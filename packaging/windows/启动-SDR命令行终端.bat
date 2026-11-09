@@ -11,10 +11,10 @@ title GNU Radio Companion (zh_CN) - SDR Terminal
 
 if not exist "%RUNTIME%\python.exe" goto NO_RUNTIME
 
-set "PATH=%RUNTIME%;%RUNTIME%\Library\bin;%RUNTIME%\Library\usr\bin;%RUNTIME%\Library\mingw-w64\bin;%RUNTIME%\Scripts;%RUNTIME%\bin;%PATH%"
+set "PATH=%RUNTIME%\Lib\site-packages\PyQt6\Qt6\bin;%RUNTIME%;%RUNTIME%\Library\bin;%RUNTIME%\Library\usr\bin;%RUNTIME%\Library\mingw-w64\bin;%RUNTIME%\Scripts;%RUNTIME%\bin;%PATH%"
 set "PYTHONHOME=%RUNTIME%"
 set "PYTHONPATH=%ROOT%;%RUNTIME%\Lib\site-packages"
-set "GRC_BLOCKS_PATH=%RUNTIME%\Library\share\gnuradio\grc\blocks;%RUNTIME%\share\gnuradio\grc\blocks;%ROOT%grc\blocks"
+set "GRC_BLOCKS_PATH=%RUNTIME%\Library\share\gnuradio\grc\blocks;%RUNTIME%\share\gnuradio\grc\blocks"
 
 if exist "%RUNTIME%\condabin\conda.bat" call "%RUNTIME%\condabin\conda.bat" activate "%RUNTIME%" >nul 2>&1
 goto SHOW_BANNER

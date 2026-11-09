@@ -250,7 +250,7 @@ blocks:
     bus_structure: null
     coordinate: [1296, 400.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: network_udp_source_0
   id: network_udp_source
   parameters:
@@ -273,7 +273,7 @@ blocks:
     bus_structure: null
     coordinate: [928, 640.0]
     rotation: 0
-    state: true
+    state: disabled
 - name: qtgui_time_sink_x_0
   id: qtgui_time_sink_x
   parameters:

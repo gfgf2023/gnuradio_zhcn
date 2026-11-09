@@ -253,8 +253,8 @@ class Platform(Element):
                             block_id, file_path)
             return
         if block_id in self.blocks:
-            log.warning('Block with id "%s" loaded from\n  %s\noverwritten by\n  %s',
-                        block_id, self.blocks[block_id].loaded_from, file_path)
+            log.debug('Block with id "%s" loaded from\n  %s\noverwritten by\n  %s',
+                      block_id, self.blocks[block_id].loaded_from, file_path)
 
         try:
             block_cls = self.blocks[block_id] = self.new_block_class(**data)

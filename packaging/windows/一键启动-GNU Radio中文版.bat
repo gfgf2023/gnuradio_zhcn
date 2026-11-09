@@ -22,10 +22,10 @@ pause
 exit /b 1
 
 :USE_PORTABLE_RUNTIME
-set "PATH=%RUNTIME%;%RUNTIME%\Library\bin;%RUNTIME%\Library\usr\bin;%RUNTIME%\Library\mingw-w64\bin;%RUNTIME%\Scripts;%RUNTIME%\bin;%PATH%"
+set "PATH=%RUNTIME%\Lib\site-packages\PyQt6\Qt6\bin;%RUNTIME%;%RUNTIME%\Library\bin;%RUNTIME%\Library\usr\bin;%RUNTIME%\Library\mingw-w64\bin;%RUNTIME%\Scripts;%RUNTIME%\bin;%PATH%"
 set "PYTHONHOME=%RUNTIME%"
 set "PYTHONPATH=%ROOT%;%RUNTIME%\Lib\site-packages"
-set "GRC_BLOCKS_PATH=%RUNTIME%\Library\share\gnuradio\grc\blocks;%RUNTIME%\share\gnuradio\grc\blocks;%ROOT%grc\blocks"
+set "GRC_BLOCKS_PATH=%RUNTIME%\Library\share\gnuradio\grc\blocks;%RUNTIME%\share\gnuradio\grc\blocks"
 
 if exist "%RUNTIME%\condabin\conda.bat" call "%RUNTIME%\condabin\conda.bat" activate "%RUNTIME%" >nul 2>&1
 
@@ -42,7 +42,7 @@ exit /b 0
 echo.
 echo =====================================================================
 echo [Error] GNU Radio Companion exited with code %errorlevel%.
-echo Required packages: pip install PyQt6 pyyaml mako qdarkstyle numpy
+echo Required packages: pip install PyQt6==6.8.1 pyyaml mako qdarkstyle numpy
 echo =====================================================================
 pause
 exit /b 1

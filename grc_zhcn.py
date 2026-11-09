@@ -192,10 +192,15 @@ def main():
             if os.path.isdir(sb):
                 search_dirs.append(sb)
 
-    # 仓库源码目录中的 blocks
-    repo_blocks = [os.path.abspath(d) for d in glob.glob(os.path.join(
-        REPO_ROOT, 'gr-*', 'grc')) + [os.path.join(REPO_ROOT, 'grc', 'blocks')]]
-    search_dirs.extend([d for d in repo_blocks if os.path.isdir(d)])
+    # 仓库源码目录中的核心 blocks（包含 .workflow.yml 和 .domain.yml，始终加载）
+    core_blocks_dir = os.path.abspath(os.path.join(REPO_ROOT, 'grc', 'blocks'))
+    if os.path.isdir(core_blocks_dir):
+        search_dirs.append(core_blocks_dir)
+
+    # 若未从 runtime 加载到子模块 blocks，则扫描 gr-*/grc
+    if len(search_dirs) <= 1:
+        repo_blocks = [os.path.abspath(d) for d in glob.glob(os.path.join(REPO_ROOT, 'gr-*', 'grc'))]
+        search_dirs.extend([d for d in repo_blocks if os.path.isdir(d)])
 
     # 去重保留顺序
     unique_dirs = []
