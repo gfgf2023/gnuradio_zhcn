@@ -8,11 +8,18 @@ GNU Radio 中文发行包打包与装配工具
 import os
 import sys
 import shutil
-import tarfile
-import zipfile
 import hashlib
 import argparse
+import subprocess
 from pathlib import Path
+
+# 确保在 Windows 环境下输出 UTF-8，杜绝 charmap / cp1252 编码崩溃
+if sys.platform == 'win32':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:
+        pass
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
@@ -33,9 +40,9 @@ def compile_mo():
     compile_script = REPO_ROOT / 'tools' / 'compile_po.py'
 
     print(f"[*] 正在编译翻译文件: {po_file} -> {mo_file}")
-    import subprocess
-    ret = subprocess.run([sys.executable, str(compile_script), str(
-        po_file), str(mo_file)], capture_output=True, text=True)
+    ret = subprocess.run([
+        sys.executable, str(compile_script), str(po_file), str(mo_file)
+    ], capture_output=True, text=True)
     if ret.returncode != 0:
         print(f"[!] 编译 PO 文件失败: {ret.stderr}", file=sys.stderr)
         sys.exit(1)
@@ -43,22 +50,29 @@ def compile_mo():
 
 
 def copy_tree_filtered(src: Path, dst: Path, ignore_patterns=None):
-    """复制目录树，并自动过滤缓存与临时文件"""
+    """复制目录树，并自动过滤缓存与临时文件，安全处理符号链接"""
     if ignore_patterns is None:
         ignore_patterns = shutil.ignore_patterns(
             '__pycache__', '*.pyc', '*.pyo', '*.pyd.manifest',
-            '.git*', '*.tmp', 'pkgs', 'tests', 'test', 'idlelib'
+            '.git*', '*.tmp', 'pkgs', 'tests', 'test', 'idlelib',
+            '.conda_trash', '*.conda_trash'
         )
-    shutil.copytree(src, dst, ignore=ignore_patterns, dirs_exist_ok=True)
+    shutil.copytree(
+        src, dst,
+        symlinks=True,
+        ignore_dangling_symlinks=True,
+        ignore=ignore_patterns,
+        dirs_exist_ok=True
+    )
 
 
 def package_release(target_os: str, runtime_path: Path, output_dir: Path, version: str):
-    print(f"\n=======================================================")
+    print("\n=======================================================")
     print(f"  开始打包 GNU Radio 简体中文增强发行版 (v{version})")
     print(f"  目标操作系统: {target_os}")
     print(f"  运行时路径: {runtime_path}")
     print(f"  输出目录: {output_dir}")
-    print(f"=======================================================\n")
+    print("=======================================================\n")
 
     # 1. 编译语言包
     compile_mo()
@@ -124,20 +138,41 @@ def package_release(target_os: str, runtime_path: Path, output_dir: Path, versio
             if f.is_file():
                 shutil.copy2(f, staging_dir / f.name)
 
-    # 6. 生成归档压缩包
+    # 6. 生成归档压缩包 (优先调用原生高效工具 7-Zip 或 tar)
     output_dir.mkdir(parents=True, exist_ok=True)
     if target_os == 'windows':
         archive_name = f"{release_name}.zip"
         archive_path = output_dir / archive_name
-        print(f"[*] 正在压缩生成 Windows ZIP 绿色免安装包: {archive_path}")
-        # 使用最高效率打包
-        shutil.make_archive(str(output_dir / release_name), 'zip', str(staging_dir.parent), str(release_name))
+
+        seven_zip = shutil.which('7z') or shutil.which('7za')
+        if not seven_zip and Path(r"C:\Program Files\7-Zip\7z.exe").exists():
+            seven_zip = r"C:\Program Files\7-Zip\7z.exe"
+
+        if seven_zip:
+            print(f"[*] 检测到 7-Zip ({seven_zip})，正在启动多线程高效压缩 Windows 绿色免安装包: {archive_path}")
+            if archive_path.exists():
+                archive_path.unlink()
+            subprocess.run([
+                str(seven_zip), 'a', '-tzip', '-mx=5', str(archive_path), str(release_name)
+            ], cwd=str(output_dir), check=True)
+        else:
+            print(f"[*] 正在压缩生成 Windows ZIP 绿色免安装包: {archive_path}")
+            shutil.make_archive(str(output_dir / release_name), 'zip', str(staging_dir.parent), str(release_name))
     else:
         archive_name = f"{release_name}.tar.gz"
         archive_path = output_dir / archive_name
-        print(f"[*] 正在压缩生成 Linux TAR.GZ 绿色免安装包: {archive_path}")
-        with tarfile.open(archive_path, 'w:gz') as tar:
-            tar.add(staging_dir, arcname=release_name)
+        if shutil.which('tar'):
+            print(f"[*] 检测到原生 tar，正在启动高效压缩 Linux TAR.GZ 绿色免安装包: {archive_path}")
+            if archive_path.exists():
+                archive_path.unlink()
+            subprocess.run([
+                'tar', '-czf', str(archive_path), release_name
+            ], cwd=str(output_dir), check=True)
+        else:
+            print(f"[*] 正在压缩生成 Linux TAR.GZ 绿色免安装包: {archive_path}")
+            import tarfile
+            with tarfile.open(archive_path, 'w:gz') as tar:
+                tar.add(staging_dir, arcname=release_name)
 
     # 7. 计算 SHA256 校验码
     sha256_val = get_sha256(archive_path)
@@ -146,7 +181,7 @@ def package_release(target_os: str, runtime_path: Path, output_dir: Path, versio
         f.write(f"{sha256_val}  {archive_name}\n")
 
     print("\n=======================================================")
-    print(f"  打包完成！")
+    print("  打包完成！")
     print(f"  安装包文件: {archive_path}")
     print(f"  文件大小: {archive_path.stat().st_size / (1024 * 1024):.2f} MB")
     print(f"  SHA256: {sha256_val}")
@@ -156,7 +191,8 @@ def package_release(target_os: str, runtime_path: Path, output_dir: Path, versio
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="GNU Radio 中文便携发行包打包器")
-    parser.add_argument('--os', choices=['windows', 'linux'], default='windows' if sys.platform == 'win32' else 'linux')
+    parser.add_argument('--os', choices=['windows', 'linux'],
+                        default='windows' if sys.platform == 'win32' else 'linux')
     parser.add_argument('--runtime', type=str, default='', help="Conda/Micromamba 编译导出的运行时目录路径")
     parser.add_argument('--output', type=str, default='dist', help="安装包输出目录")
     parser.add_argument('--version', type=str, default='3.11.0.0-zhcn', help="版本号 (如 3.11.0.0-zhcn)")

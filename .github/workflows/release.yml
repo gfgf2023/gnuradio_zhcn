@@ -26,6 +26,8 @@ jobs:
   build-windows:
     name: Build Windows x64 Portable
     runs-on: windows-2022
+    env:
+      PYTHONIOENCODING: utf-8
     defaults:
       run:
         shell: pwsh
@@ -81,6 +83,8 @@ jobs:
   build-linux:
     name: Build Linux x86_64 Portable
     runs-on: ubuntu-latest
+    env:
+      PYTHONIOENCODING: utf-8
     defaults:
       run:
         shell: bash -el {0}
