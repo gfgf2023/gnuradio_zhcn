@@ -59,9 +59,13 @@ class Application(QApplication):
         self.theme = "light"
         if self.qsettings.value("appearance/theme", "dark") == "dark":
             try:
+                os.environ.setdefault("QT_API", "pyqt6")
                 import qdarkstyle
 
-                self.setStyleSheet(qdarkstyle.load_stylesheet())
+                try:
+                    self.setStyleSheet(qdarkstyle.load_stylesheet(qt_api="pyqt6"))
+                except TypeError:
+                    self.setStyleSheet(qdarkstyle.load_stylesheet())
                 self.theme = "dark"
             except ImportError:
                 log.warning("Did not find QDarkstyle. Dark mode disabled")

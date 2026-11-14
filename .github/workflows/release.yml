@@ -53,8 +53,8 @@ jobs:
         with:
           environment-file: packaging/environment-win64.yml
           environment-name: gnuradio_runtime
-          init-shell: powershell
-          root-prefix: C:\micromamba
+          init-shell: pwsh
+          micromamba-root-path: C:\micromamba
           cache-environment: true
           cache-downloads: true
           post-cleanup: 'all'
@@ -83,6 +83,22 @@ jobs:
               exit 1
           }
           Write-Host "[*] Micromamba Runtime Prefix: $RUNTIME_PREFIX"
+
+          # Smoke-test PyQt6 + GNU Radio runtime import in portable env layout before packaging
+          $ROOT_DIR = (Get-Location).Path
+          $env:QT_QPA_PLATFORM = "offscreen"
+          $env:PYTHONHOME = $RUNTIME_PREFIX
+          $env:PYTHONPATH = "$ROOT_DIR;$RUNTIME_PREFIX\Lib\site-packages"
+          $env:GRC_BLOCKS_PATH = "$RUNTIME_PREFIX\Library\share\gnuradio\grc\blocks;$RUNTIME_PREFIX\share\gnuradio\grc\blocks"
+          $env:PATH = "$RUNTIME_PREFIX\Lib\site-packages\PyQt6\Qt6\bin;$RUNTIME_PREFIX;$RUNTIME_PREFIX\Library\bin;$RUNTIME_PREFIX\Library\usr\bin;$RUNTIME_PREFIX\Library\mingw-w64\bin;$RUNTIME_PREFIX\Scripts;$RUNTIME_PREFIX\bin;$env:PATH"
+          & "$RUNTIME_PREFIX\python.exe" grc_zhcn.py --headless
+          if ($LASTEXITCODE -ne 0) {
+              Write-Error "Runtime headless smoke test failed with exit code $LASTEXITCODE"
+              exit $LASTEXITCODE
+          }
+          Remove-Item Env:PYTHONHOME -ErrorAction SilentlyContinue
+          Remove-Item Env:PYTHONPATH -ErrorAction SilentlyContinue
+          Remove-Item Env:GRC_BLOCKS_PATH -ErrorAction SilentlyContinue
 
           python tools/package_release.py --os windows --runtime "$RUNTIME_PREFIX" --output dist --version "$VERSION" --require-runtime
           Get-ChildItem -Path dist
@@ -139,6 +155,9 @@ jobs:
 
           RUNTIME_PREFIX="${CONDA_PREFIX:-$(micromamba info --json | jq -r '.env_prefix')}"
           echo "[*] Micromamba Runtime Prefix: $RUNTIME_PREFIX"
+
+          # Smoke-test PyQt6 + GNU Radio runtime import before packaging
+          QT_QPA_PLATFORM=offscreen "$RUNTIME_PREFIX/bin/python3" grc_zhcn.py --headless
 
           python3 tools/package_release.py --os linux --runtime "$RUNTIME_PREFIX" --output dist --version "$VERSION" --require-runtime
           ls -la dist/

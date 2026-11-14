@@ -10,9 +10,14 @@ import sys
 import os
 import glob
 import types
+import ctypes
 import gettext
 import builtins
 import argparse
+import importlib.util
+
+_DLL_DIR_HANDLES = []
+_PRELOADED_QT_DLLS = []
 
 # 确保 Windows 命令行支持 UTF-8 打印输出
 if sys.platform == 'win32':
@@ -135,12 +140,79 @@ def init_gnuradio_environment():
         return mod_gr
 
 
+def setup_windows_qt6_dlls():
+    """在 Windows 下优先锁定 PyQt6 自带的 Qt6 DLL 与插件路径，避免与 Conda Library\\bin 中的 Qt6 冲突"""
+    if sys.platform != 'win32':
+        return None
+
+    spec = importlib.util.find_spec('PyQt6')
+    if spec is None:
+        return None
+
+    candidate_dirs = []
+    if spec.origin:
+        candidate_dirs.append(os.path.dirname(spec.origin))
+    if spec.submodule_search_locations:
+        candidate_dirs.extend(list(spec.submodule_search_locations))
+
+    qt6_bin = None
+    qt6_plugins = None
+    for pkg_dir in candidate_dirs:
+        if not pkg_dir:
+            continue
+        bin_dir = os.path.join(pkg_dir, 'Qt6', 'bin')
+        if os.path.isfile(os.path.join(bin_dir, 'Qt6Core.dll')):
+            qt6_bin = bin_dir
+            plugins_dir = os.path.join(pkg_dir, 'Qt6', 'plugins')
+            if os.path.isdir(plugins_dir):
+                qt6_plugins = plugins_dir
+            break
+
+    if qt6_bin:
+        if hasattr(os, 'add_dll_directory'):
+            try:
+                _DLL_DIR_HANDLES.append(os.add_dll_directory(qt6_bin))
+            except OSError:
+                pass
+
+        path_val = os.environ.get('PATH', '')
+        path_parts = [p for p in path_val.split(os.pathsep) if p]
+        if not path_parts or os.path.normcase(path_parts[0]) != os.path.normcase(qt6_bin):
+            os.environ['PATH'] = qt6_bin + (os.pathsep + path_val if path_val else '')
+
+        # 按依赖顺序以绝对路径预加载核心 Qt6 DLL，防止 Windows 搜索到 Conda Library\bin 的不匹配版本
+        for dll_name in (
+            'Qt6Core.dll',
+            'Qt6Gui.dll',
+            'Qt6Widgets.dll',
+            'Qt6Svg.dll',
+            'Qt6Network.dll',
+            'Qt6OpenGL.dll',
+            'Qt6OpenGLWidgets.dll',
+            'Qt6PrintSupport.dll',
+        ):
+            dll_path = os.path.join(qt6_bin, dll_name)
+            if os.path.isfile(dll_path):
+                try:
+                    _PRELOADED_QT_DLLS.append(ctypes.WinDLL(dll_path))
+                except OSError:
+                    pass
+
+    return qt6_plugins
+
+
 def main():
     parser = argparse.ArgumentParser(description="GNU Radio 伴侣 (GRC) 简体中文增强版")
     parser.add_argument('flowgraph', nargs='*', help="要打开的 .grc 流图文件路径")
     parser.add_argument('-l', '--lang', default='zh_CN', choices=['zh_CN', 'en_US'], help="界面语言 (默认 zh_CN)")
     parser.add_argument('--headless', action='store_true', help="无图形界面验证模式 (用于自动化测试)")
     args = parser.parse_args()
+
+    # 0. 确保 qtpy / qdarkstyle 使用 PyQt6 而不是回退到 Conda 中的 PyQt5
+    os.environ.setdefault('QT_API', 'pyqt6')
+
+    # 0.5 在导入 gnuradio/PyQt6 之前锁定 Windows Qt6 DLL 目录与预加载匹配版本
+    qt6_plugins = setup_windows_qt6_dlls()
 
     # 1. 初始化国际化
     setup_localization(args.lang)
@@ -154,13 +226,18 @@ def main():
     # 3. 导入 PyQt6 与 GRC 组件
     try:
         from PyQt6.QtWidgets import QApplication
-        from PyQt6.QtCore import Qt, QSettings
+        from PyQt6.QtCore import Qt, QSettings, QCoreApplication
+        if qt6_plugins:
+            QCoreApplication.setLibraryPaths([qt6_plugins])
         from grc.gui_qt import properties
         from grc.gui_qt.Platform import Platform
         from grc.gui_qt.grc import Application
     except ImportError as e:
         print(f"[错误] 无法加载 PyQt6 组件: {e}", file=sys.stderr)
-        print("请先安装 PyQt6: pip install PyQt6 pyyaml mako qdarkstyle", file=sys.stderr)
+        print(f"[诊断] Python 解释器: {sys.executable}", file=sys.stderr)
+        if 'DLL load failed' in str(e):
+            print("[提示] 检测到 Windows Qt6 DLL 加载冲突或缺少 VC++ 运行库，请确认 PyQt6 与 PyQt6-Qt6 版本一致 (推荐 PyQt6==6.8.1 PyQt6-Qt6==6.8.1)。", file=sys.stderr)
+        print("请先安装 PyQt6: pip install PyQt6==6.8.1 PyQt6-Qt6==6.8.1 pyyaml mako qdarkstyle", file=sys.stderr)
         return 1
 
     # 4. 初始化 Platform 数据模型
